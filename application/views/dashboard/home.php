@@ -34,7 +34,7 @@
       <div class="icon"><a href=""><img alt="" src="<?php echo base_url();?>asset/images/dashboard/meetings.png"><span>Meetings</span></a></div>
     </div>
     <div class="icon-wrapper">
-      <div class="icon"><a href=""><img alt="" src="<?php echo base_url();?>asset/images/dashboard/icon-48-article-add.png"><span>Registration</span></a></div>
+      <div class="icon"><a href="<?php echo site_url('registration')?>"><img alt="" src="<?php echo base_url();?>asset/images/dashboard/icon-48-article-add.png"><span>Registration</span></a></div>
     </div>
     <div class="icon-wrapper">
       <div class="icon"><a href=""><img alt="" src="<?php echo base_url();?>asset/images/dashboard/news.png"><span>BAC</span></a></div>
@@ -49,7 +49,7 @@
 </div>
 <div class="cpanel-right">
   <div class="widget acc">
-  <?php 
+  <?php
   if($this->session->userdata('group_id') == 1)
 		{
   ?>
@@ -65,14 +65,14 @@
           </tr>
         </thead>
         <tbody>
-          <?php 
+          <?php
              $users = $this->onlineusers->get_info(); //prefer using reference to best memory usage
 			//  foreach($users as $user)
 			 // { ?>
           <tr>
             <th scope="row"> <a href="">Muhammad Ayyub Bhatti</a> </th>
             <td class="center">Admin</td>
-           
+
           </tr>
           <?php // } ?>
         </tbody>

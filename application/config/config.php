@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'https://glms.test';
+$config['base_url']	= 'http://dev.glms.com';
 
 /*
 |--------------------------------------------------------------------------
@@ -267,7 +267,7 @@ $config['sess_match_ip']        = FALSE;
 $config['sess_match_useragent'] = FALSE;
 $config['cookie_prefix']        = "";
 $config['cookie_domain']        = "";
-$config['cookie_path']          = "/";  
+$config['cookie_path']          = "/";
 
 /*
 |--------------------------------------------------------------------------
