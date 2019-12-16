@@ -1,0 +1,1 @@
+This library (FancyBox v1.3.4) is used and adapted to work for the "Lightbox Form" feature of AJAX Form Pro. Consider downloading its copy from http://www.fancybox.net/ if you wish to use it on different projects.

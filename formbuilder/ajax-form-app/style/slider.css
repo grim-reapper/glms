@@ -1,0 +1,14 @@
+/* [start] Slide-In BOX */
+
+#backgroundMask { background: none repeat scroll 0 0 #000000; display: none; height: 100%; left: 0; position: absolute;  top: 0; width: 100%; z-index:11; }
+
+#top-container { -moz-box-shadow: 0 0 5px #E7E7E7; position: fixed; z-index:12;  text-align:left; }
+#top-box-container { z-index:13; top:-1px; -moz-box-shadow: 0 0 5px white; -moz-border-radius: 0 0 0 5px; right: 0px; background-color:white; width: 46%; position: relative; border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; }
+
+#top-box { z-index:14; padding: 11px 0 0 3px; line-height:12px; moz-box-shadow: 0px 0px 1px #cdcdcd;display: none; background-color: #ffffff;  -moz-border-radius-bottomleft: 5px; }
+
+#top-button { background-image: url('../images/icon-contact.png'); background-repeat: no-repeat; background-position: 10% 50%; -moz-box-shadow: 0 0 5px #E7E7E7; cursor: pointer; text-transform:uppercase; border-bottom: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-left: 1px solid #DDDDDD; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; padding: 10px 6px 10px 35px; background-color: #ffffff; color: #000000; position: absolute; right: -1px; bottom: -39px; width:83px; }
+#top-button a {font-weight: bold; text-decoration: none;}
+#top-button a:hover {text-decoration: none;}
+
+/* end Slide-In BOX */

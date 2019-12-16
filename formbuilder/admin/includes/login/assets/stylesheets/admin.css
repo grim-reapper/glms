@@ -1,0 +1,277 @@
+@import 'formalize.css';
+
+/*
+	960 Grid System ~ Text CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+
+body {
+	font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+
+hr {
+	border: 0 #ccc solid;
+	border-top-width: 1px;
+	clear: both;
+	height: 0;
+}
+
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
+
+h1 {
+	font-size: 25px;
+}
+
+h2 {
+	font-size: 23px;
+}
+
+h3 {
+	font-size: 21px;
+}
+
+h4 {
+	font-size: 19px;
+}
+
+h5 {
+	font-size: 17px;
+}
+
+h6 {
+	font-size: 15px;
+}
+
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: disc;
+}
+
+li {
+	margin-left: 30px;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset {
+	margin-bottom: 20px;
+}
+
+
+/* `Wrapper
+----------------------------------------------------------------------------------------------------*/
+
+body {
+background-color: #FBFBFB;
+}
+
+
+table { margin: 1em; border-collapse: collapse; width:96%; }
+td, th { padding: .3em; border: 1px #ccc solid; } 
+th { text-align:left; }
+
+#ddtags {
+    float: left;
+    width: 300px;
+}
+dl dd {
+padding: 5px;
+}
+
+dl dt {
+    float: left;
+text-align:right;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 5px;
+    width: 100px;
+	border:1px solid #e7e7e7;
+}
+
+
+#wrapper {
+	margin: 0 auto;
+	padding: 40px 20px 20px 20px;
+	width: 738px;
+	background-color: #FBFBFB;
+	position:relative;	
+}
+
+#wrapper_section {
+
+-webkit-box-shadow: 1px 2px 4px rgba(0,0,0,0.1); 
+-moz-box-shadow: 1px 2px 4px rgba(0,0,0,0.1); 
+box-shadow: 1px 2px 4px rgba(0,0,0,0.1); 
+
+padding: 34px 30px 20px;
+margin: 35px;
+
+position:relative;
+
+-moz-border-radius: 5px 5px 5px 5px;
+border: 1px solid #e7e7e7; background-color: white;
+
+}
+
+/* `Errors
+----------------------------------------------------------------------------------------------------*/
+
+label.error {
+	background: #ffc;
+	color: #c00;
+	font-style: italic;
+}
+
+input.error,
+select.error,
+textarea.error {
+	background-color: #fee;
+}
+
+div.new_user {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: url("../images/icon-new-user.png") no-repeat scroll 13% 58% white;
+    border: 1px solid #E7E7E7;
+    font-family: "Myriad Pro",Arial,Helvetica,Tahoma,sans-serif;
+    font-size: 19px;
+    font-weight: lighter;
+    height: 34px;
+    margin: -31px 0 15px;
+    padding: 10px 0 10px 58px;
+    text-align: left;
+    width: 96px;
+}
+
+
+
+
+div.members {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: url("../images/icon-members.png") no-repeat scroll 14% 48% white;
+    border: 1px solid #E7E7E7;
+    font-family: "Myriad Pro",Arial,Helvetica,Tahoma,sans-serif;
+    font-size: 19px;
+    font-weight: lighter;
+    height: 34px;
+    margin: -62px 0 15px;
+    padding: 10px 0 10px 57px;
+    text-align: left;
+    width: 87px;
+}
+
+
+
+
+
+div.account {
+ -moz-border-radius: 5px 5px 5px 5px;
+    background: url("../images/icon-account.png") no-repeat scroll 9% 55% white;
+    border: 1px solid #E7E7E7;
+    font-family: "Myriad Pro",Arial,Helvetica,Tahoma,sans-serif;
+    font-size: 19px;
+    font-weight: lighter;
+    height: 34px;
+    margin: -62px 0 15px;
+    padding: 10px 0 10px 58px;
+    text-align: left;
+    width: 151px;
+}
+
+div.reset_password {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: url("../images/icon-reset-password.png") no-repeat scroll 11% 53% white;
+    border: 1px solid #E7E7E7;
+    font-family: "Myriad Pro",Arial,Helvetica,Tahoma,sans-serif;
+    font-size: 19px;
+    font-weight: lighter;
+    height: 34px;
+    margin: -62px 0 15px;
+    padding: 10px 0 10px 62px;
+    text-align: left;
+    width: 140px;
+}
+
+div.no_bg_icon { background-image: none !important; }
+
+h1.login {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: url("../images/icon-login.png") no-repeat scroll 8% 38% white;
+    border: 1px solid #E7E7E7;
+    font-family: "Myriad Pro",Arial,Helvetica,Tahoma,sans-serif;
+    font-size: 19px;
+    font-weight: lighter;
+    height: 34px;
+    left: 20%;
+    margin: 0 0 15px;
+    padding: 10px 10px 10px 53px;
+    position: absolute;
+    text-align: left;
+    top: -31px;
+	z-index: 99999;
+}
+
+div.notification_ok { 
+    -moz-border-radius: 5px 5px 5px 5px !important;
+    background: url("../images/icon-button-ok.png") no-repeat scroll 15px 50% #F5F9FD !important;
+    margin: 0 auto !important;
+    padding: 8px;
+    text-align: left !important; border: 1px solid #BEC8D7; 
+	width:100%;
+}
+
+#ms_login_note {      -moz-border-radius: 5px 5px 5px 5px !important;
+    background: url("../images/icon-exclamation-error.png") no-repeat scroll 4% 9px #FDF4F5 !important;
+    border: 1px solid #DD96A5;
+    display: none;
+    margin-bottom: 17px;
+    padding: 6px 6px 8px 32px; }
+
+div.login_preloader { 
+text-align: center;
+padding:10px;
+}
+
+div.login_preloader img { 
+margin:10px;
+}
+
+div.clear { clear:both; }
+
+div.notification_error { border: 1px solid #DD96A5; -moz-border-radius: 5px 5px 5px 5px !important; 
+background: url("../images/icon-exclamation-error.png") no-repeat scroll 3% 3px #FDF4F5; height: auto !important; margin: 0 0 15px; padding: 8px 8px 8px 9px !important; text-align: left !important; width: 96% !important; }
+
+#ms_captcha { border: 1px solid #e7e7e7; }
+
+
+#ms_icon_refresh { margin: 0 0 7px 0 !important; }
+
+
+#ms_captcha { border: 1px solid #e7e7e7 !important; margin:0px 0 0 !important; }
+
+#ms_captcha_div { float:left !important; margin: 5px 0 0 !important; }
+
+#ms_captcha_refresh { display:none; }
