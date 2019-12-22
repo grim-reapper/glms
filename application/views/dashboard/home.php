@@ -34,7 +34,7 @@
       <div class="icon"><a href=""><img alt="" src="<?php echo base_url();?>asset/images/dashboard/meetings.png"><span>Meetings</span></a></div>
     </div>
     <div class="icon-wrapper">
-      <div class="icon"><a href="<?php echo site_url('registration')?>"><img alt="" src="<?php echo base_url();?>asset/images/dashboard/icon-48-article-add.png"><span>Registration</span></a></div>
+      <div class="icon"><a href="<?php echo site_url('registration/identified')?>"><img alt="" src="<?php echo base_url();?>asset/images/dashboard/icon-48-article-add.png"><span>Housing Scheme</span></a></div>
     </div>
     <div class="icon-wrapper">
       <div class="icon"><a href=""><img alt="" src="<?php echo base_url();?>asset/images/dashboard/news.png"><span>BAC</span></a></div>

@@ -26,7 +26,7 @@ if(!$this->mdl_sessions->is_login())
     <div class="wrapper">
 
         <!-- Left navigation -->
-        <?php  $this->load->view("management/left_nav"); ?>
+        <?php  $this->load->view("registration/left_nav"); ?>
 
         <!-- Content -->
         <div class="content">

@@ -16,8 +16,7 @@
         $('#'+id+'_counter').val(counter);
 
     }
-    function add_owner(id)
-    {
+    function add_owner(id) {
         var counter = $('#'+id+'_counter').val();
         counter = parseInt(counter);
         counter=counter+1;
@@ -45,6 +44,92 @@
         <div class="flex-items">
         <div class="remove1" onclick=remove_new("${id+'_'+counter}");></div><label></label><div class="formright" >
         </div>
+        </div>`;
+        $('#'+id).after(html);
+        $('#'+id+'_counter').val(counter);
+    }
+    function add_public_path(id) {
+        var counter = $('#'+id+'_counter').val();
+        counter = parseInt(counter);
+        counter=counter+1;
+        var html = '';
+        html += `
+       <div class="rowElem  noborder flex" id="${id+'_'+counter}">
+            <div class="flex-items">
+                <label>Public Paths, Watercourses:</label>
+                <div class="formRight">
+                    <select  name="${'public_path_'+counter}" id="" style="width: 133px;">
+                        <option value="">Select </option>
+                        <option value="active_watercourse"> Active Watercourse</option>
+                        <option value="inactive_watercourse">Inactive Watercourse</option>
+                        <option value="active_public_path">Active Public Path</option>
+                        <option value="inactive_public_path">Inactive Public Path</option>
+                        <option value="water_pond">Water Pond</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Ownership:</label>
+                <div class="formRight">
+                    <select name="${'public_path_ownership_'+counter}" id="" style="width: 133px;">
+                        <option value="">Select </option>
+                        <option value="ex-evacuee"> Ex-Evacuee</option>
+                        <option value="provincial_govt">Provincial Govt</option>
+                        <option value="village_common_land">Village Common Land</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Khasra No:</label>
+                <div class="formRight">
+                    <input type="text" name="${'pp_khasra_no_'+counter}" value="" />
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Area (K-M-Sqft):</label>
+                <div class="formRight">
+                    <input type="text" name="${'pp_area_'+counter}" value="" />
+                </div>
+            </div>
+            <div class="flex-items">
+                 <div class="remove1" onclick=remove_new("${id+'_'+counter}");></div><label></label><div class="formright" >
+        </div>
+            </div>
+        </div>`;
+        $('#'+id).after(html);
+        $('#'+id+'_counter').val(counter);
+    }
+    function add_khasra(id) {
+        var counter = $('#'+id+'_counter').val();
+        counter = parseInt(counter);
+        counter=counter+1;
+        var html = '';
+        html += `
+<div class="rowElem noborder flex" id="${id+'_'+counter}">
+            <div class="flex-items">
+                <label>Khasra No:</label>
+                <div class="formRight">
+                    <input type="text" name="${'khasra_no_'+counter}" value=""/>
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Area:</label>
+                <div class="formRight">
+                    <input type="text"   name="${'area_'+counter}" value=""/>
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Mouza:</label>
+                <div class="formRight">
+                    <input type="text"   name="${'mouza_'+counter}" value="" />
+                </div>
+            </div>
+            <div class="flex-items">
+                <div class="remove1" onclick=remove_new("${id+'_'+counter}");></div><label></label><div class="formright" >
+        </div>
+            </div>
         </div>`;
         $('#'+id).after(html);
         $('#'+id+'_counter').val(counter);
@@ -96,6 +181,10 @@ echo form_open_multipart('registration/add', $attributes);
             <label>Choose Location</label>
             <div class="formRight">
                 <input type="text"   name="location" value="" />
+            </div>
+            <label>Choose File (Copy of plan)</label>
+            <div class="formRight">
+                <input type="file" name="copy_of_plan" value="" />
             </div>
             <div class="fix"></div>
         </div>
@@ -160,7 +249,7 @@ echo form_open_multipart('registration/add', $attributes);
             </div>
             <label style="margin-left: -35px;">Sanction Status of Scheme:</label>
             <div class="formRight" style="width:16%;">
-                <select name="rural_urban" id="rural_urban" style="width: 133px;" >
+                <select name="saction_status" id="saction_status" style="width: 133px;" >
                     <option value="">Select </option>
                     <option value="planning_permission">Planning Permission</option>
                     <option value="approved">Approved </option>
@@ -171,123 +260,131 @@ echo form_open_multipart('registration/add', $attributes);
 
             <div class="fix"></div>
         </div>
-
+        <input type="hidden" name="khasra_counter" id="khasra_counter" value="1">
+        <div class="rowElem noborder flex" id="khasra">
+            <div class="flex-items">
+                <label>Khasra No:</label>
+                <div class="formRight">
+                    <input type="text" name="khasra_no_1" value=""/>
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Area:</label>
+                <div class="formRight">
+                    <input type="text"   name="area_1" value=""/>
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Mouza:</label>
+                <div class="formRight">
+                    <input type="text"   name="mouza_1" value="" />
+                </div>
+            </div>
+            <div class="flex-items">
+                <input type="button" onclick="add_khasra('khasra')" name="add" value="" class="addbutton" style="margin-top: 0px;">
+            </div>
+        </div>
         <div class="rowElem">
-            <label>Khasra Nos.</label>
+            <label>Total area of Scheme(All Mouzas)</label>
             <div class="formRight">
-                <div id="education">
-                    <input type="text"   name="education_1" value="" id="education_1" style="width: 282px;"/>
-                    <input type="hidden"   name="education_counter" value="2" id="education_counter" />
-                    <input type="button" onclick="add_feed('education')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
+                <div id="total_area">
+                    <input type="text"   name="total_area_scheme" value="" id="total_area" style="width: 282px;"/>
                 </div>
 
             </div>
-            <label>Hospitals</label>
+            <label>Vacant Area</label>
             <div class="formRight">
-                <div id="Hospitals">
-                    <input type="text"   name="Hospitals_1" value="" id='Hospitals_1' style="width: 282px;" />
-                    <input type="hidden"   name="Hospitals_counter" value="2" id="Hospitals_counter" />
-                    <input type="button" onclick="add_feed('Hospitals')" name="add"  class="addbutton" style="margin-top: 0px;"/>
+                <div id="vacant_area">
+                    <input type="text"   name="vacant_area" value="" id='vacant_area' style="width: 282px;" />
                 </div>
 
             </div>
             <div class="fix"></div>
         </div>
         <div class="rowElem">
-            <label>Markets</label>
+            <label>Previous background of Record</label>
             <div class="formRight">
-                <div id="markets">
-                    <input type="text"   name="markets_1" value="" id='market_1'style="width: 282px;" />
-                    <input type="hidden"   name="markets_counter" value="2" id='markets_counter' />
-                    <input type="button" onclick="add_feed('markets')" name="add" value="" class="addbutton" style="margin-top: 0px;" />
+                <select name="pbo_land" id="" style="width: 133px;">
+                    <option value="">Select </option>
+                    <option value="land_reforms"> Land Reforms</option>
+                    <option value="provincial_govt">Provincial Govt</option>
+                    <option value="acquired_land">Acquired Land </option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <label>Khasra No</label>
+            <div class="formRight">
+                <div id="khasra_no">
+                    <input type="text"   name="khasra_no_land" value="" id='khasra_no_land'style="width: 282px;" />
                 </div>
 
             </div>
-            <label>Roads</label>
             <div class="formRight">
-                <div id="roads">
-
-                    <input type="text"   name="roads_1" value="" id='roads_1'style="width: 282px;" />
-                    <input type="hidden"   name="roads_counter" value="2" id='roads_counter' />
-                    <input type="button" onclick="add_feed('roads')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
-
+                <label>Choose file (Copy of Mutation):</label>
+                <div class="formRight">
+                    <input type="file"   name="copy_of_mutation" value="" />
                 </div>
-
             </div>
             <div class="fix"></div>
         </div>
-        <div class="rowElem">
-            <label>Archeological Sites: </label>
-            <div class="formRight">
-                <div id="Asites">
-                    <input type="text"   name="Asites_1" value=""  id='Asites_1' style="width: 282px;"/>
-                    <input type="hidden"   name="Asites_counter" value="2"  id='Asites_counter'/>
-                    <input type="button" onclick="add_feed('Asites')" name="add" value="" class="addbutton" style="margin-top: 0px;" />
+        <input type="hidden" name="pp_counter" value="1" id="p_path_counter">
+        <div class="rowElem  noborder flex" id="p_path">
+            <div class="flex-items">
+                <label>Public Paths, Watercourses:</label>
+                <div class="formRight">
+                    <select name="public_path_1" id="" style="width: 133px;">
+                        <option value="">Select </option>
+                        <option value="active_watercourse"> Active Watercourse</option>
+                        <option value="inactive_watercourse">Inactive Watercourse</option>
+                        <option value="active_public_path">Active Public Path</option>
+                        <option value="inactive_public_path">Inactive Public Path</option>
+                        <option value="water_pond">Water Pond</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
-
+            </div>
+            <div class="flex-items">
+                <label>Ownership:</label>
+                <div class="formRight">
+                    <select name="public_path_ownership_1" id="" style="width: 133px;">
+                        <option value="">Select </option>
+                        <option value="ex-evacuee"> Ex-Evacuee</option>
+                        <option value="provincial_govt">Provincial Govt</option>
+                        <option value="village_common_land">Village Common Land</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Khasra No:</label>
+                <div class="formRight">
+                    <input type="text" name="pp_khasra_no_1" value="" />
+                </div>
+            </div>
+            <div class="flex-items">
+                <label>Area (K-M-Sqft):</label>
+                <div class="formRight">
+                    <input type="text" name="pp_area_1" value="" />
+                </div>
+            </div>
+            <div class="flex-items">
+                <input type="button" onclick="add_public_path('p_path')" name="add" value="" class="addbutton" style="margin-top: 0px;">
+            </div>
+        </div>
+        <div class="rowElem">
+            <label>Total Area of Public Path etc. </label>
+            <div class="formRight">
+                <div id="total_area_public">
+                    <input type="text"   name="total_area_public" value=""  id='total_area_public' style="width: 282px;"/>
+                </div>
             </div>
 
-            <label>Industries</label>
+            <label>Choose File (Fard)</label>
             <div class="formRight">
                 <div id="industries">
-
-                    <input type="text"   name="industries_1" value="" id='industries_1'style="width: 282px;" />
-                    <input type="hidden"   name="industries_counter" value="2" id='industries_counter' />
-                    <input type="button" onclick="add_feed('industries')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
+                    <input type="file"  name="fard_file" id='fard_file'style="width: 282px;" />
                 </div>
 
-            </div>
-            <div class="fix"></div>
-        </div>
-        <div class="rowElem">
-            <label>Rivers And Canals:</label>
-            <div class="formRight">
-                <div id="randc">
-
-                    <input type="text"   name="randc_1" value="" id='randc_1' style="width: 282px;"/>
-                    <input type="hidden"   name="randc_counter" value="2" id='randc_counter' />
-                    <input type="button" onclick="add_feed('randc')" name="add" value="" class="addbutton"style="margin-top: 0px;" />
-
-                </div>
-
-            </div>
-            <label>Others</label>
-            <div class="formRight">
-                <div id="others">
-
-                    <input type="text"   name="others_1" value="" id='other_1'style="width: 282px;" />
-                    <input type="hidden"   name="others_counter" value="2" id='others_counter' />
-                    <input type="button" onclick="add_feed('others')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
-
-                </div>
-
-            </div>
-            <div class="fix"></div>
-        </div>
-        <div class="rowElem">
-            <h3>Mauza Detail </h3>
-            <div class="fix"></div>
-        </div>
-        <div class="rowElem">
-            <label>Mussavies Picture:</label>
-            <div class="formRight">
-                <input type="file"   name="Massive_picture" value="" />
-            </div>
-            <label>Photos:</label>
-            <div class="formRight">
-                <input type="file"   name="Photos" value="" />
-            </div>
-
-            <div class="fix"></div>
-        </div>
-        <div class="rowElem">
-            <label>Documents:</label>
-            <div class="formRight">
-                <input type="file"   name="Document" value="" />
-            </div>
-            <label>Index Map:</label>
-            <div class="formRight">
-                <input type="file"   name="index_map" value="" />
             </div>
             <div class="fix"></div>
         </div>
@@ -306,14 +403,44 @@ echo form_open_multipart('registration/add', $attributes);
             </div>
             <div class="fix"></div>
         </div>
-        <div class="rowElem ">
-            <label>Lambardars.</label>
+        <div class="rowElem">
+            <h3>Alternate Land Offered </h3>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem">
+            <label>Khasra No:</label>
             <div class="formRight">
-                <input type="text"   name="lambardras" value="" />
+                <input type="text" name="alt_khasra_no">
             </div>
-            <label>Contact No.</label>
+            <label>Choose File (Fard):</label>
             <div class="formRight">
-                <input type="text"   name="Contact_no" value="" />
+                <input type="file"  name="alt_fard" value="" />
+            </div>
+            <label>Choose File (Site Plan):</label>
+            <div class="formRight">
+                <input type="file"  name="alt_site_plan" value="" />
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem ">
+            <label>Schedule Rate /Marla</label>
+            <div class="formRight">
+                <input type="text"   name="alt_schedule_rate" value="" />
+            </div>
+            <label>Market Price/Marla</label>
+            <div class="formRight">
+                <input type="text"   name="alt_market_price" value="" />
+            </div>
+            <label>DPAC Price/Marla</label>
+            <div class="formRight">
+                <input type="text"   name="alt_dpac_price" value="" />
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem ">
+            <label>Notes</label>
+            <div class="formRight">
+                <textarea name="notes" id="" cols="30" rows="10"></textarea>
             </div>
             <div class="fix"></div>
         </div>
@@ -321,80 +448,18 @@ echo form_open_multipart('registration/add', $attributes);
             <div class="rowElem">
                 <label>Status of Exchange Approval</label>
                 <div class="formRight">
-                    <select name="exchange_approval" id="exchange_approval" >
+                    <select name="exchange_approval" id="exchange_approval">
                         <option value=""> Select NA </option>
                         <option value="pending_with_bor">Pending with BOR</option>
                         <option value="sanction_received">Sanction Received</option>
                         <option value="implemented">Implemented</option>
                     </select>
                 </div>
-                <label>Electricity: </label>
+                <label>Choose File (Reference to BOR): </label>
                 <div class="formRight">
-                    <input type="radio" name="electric_meter"  value="1" />
-                    <label>Yes</label>
-                    <input type="radio" name="electric_meter" checked="checked"  value="0" />
-                    <label>No</label>
+                    <input type="file" name="ref_to_bor">
                 </div>
                 <div class="fix"></div>
-            </div>
-            <div class="rowElem">
-                <label>Punjab Provincial No.</label>
-                <div class="formRight">
-                    <select name="pp_no" id="pp_no" >
-                        <option value=""> Select PP</option>
-                        <?php for($i=137; $i<=161 ; $i++){?>
-                            <option value="PP-<?php echo $i;?>">PP-<?php echo $i;?></option>
-                        <?php }?>
-                    </select>
-                </div>
-                <label>Sui Gas: </label>
-                <div class="formRight">
-                    <input type="radio" name="sui_gas" value="1" />
-                    <label>Yes</label>
-                    <input type="radio" name="sui_gas"  checked="checked" value="0"  />
-                    <label>No</label>
-                </div>
-                <div class="fix"></div>
-            </div>
-            <div class="rowElem">
-                <label>UC No.</label>
-                <div class="formRight">
-                    <input type="text" name="uc" />
-                </div>
-                <label>Water Supply: </label>
-                <div class="formRight">
-                    <input type="radio" name="water_supply"   value="1"/>
-                    <label>Yes</label>
-                    <input type="radio" name="water_supply" checked="checked" value="0"  />
-                    <label>No</label>
-                </div>
-                <div class="fix"></div>
-            </div>
-            <div class="rowElem">
-                <label>Police Station</label>
-                <div class="formRight">
-                    <input type="text" name="ps" />
-                </div>
-                <label> Google Cordinates: </label>
-                <div class="formRight">
-                    <input type="text" value="" name="coordinates"  readonly="readonly" id="coordinates"/>
-                    <input type="hidden" value="" name="latitude"   id="lat" />
-                    <input type="hidden" value="" name="longitude" id="lng" />
-                    <br />
-
-                    <?php
-                    $atts = array(
-                        'width'      => '960',
-                        'height'     => '800',
-                        'scrollbars' => 'yes',
-                        'status'     => 'yes',
-                        'resizable'  => 'yes',
-                        'screenx'    => '0',
-                        'screeny'    => '0'
-                    );
-                    echo anchor_popup('map/new_property_map', 'Add Coordinates', $atts);
-                    ?>
-                </div>
             </div>
         </div>
         <div id="new_1" style=" display:none" >
@@ -409,7 +474,7 @@ echo form_open_multipart('registration/add', $attributes);
                 <input type="submit"   name="submit" value="Save" class="basicBtn"  />
                 <?php
                 $attributes = array('class' => 'basicBtn a_button');
-                echo anchor('mauza','Cancel',$attributes);
+                echo anchor('registration','Cancel',$attributes);
                 ?>
             </div>
             <div class="fix"></div>

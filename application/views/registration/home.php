@@ -89,48 +89,38 @@
 			});
     }
     </script>
-
-
-<div id="sub_bar">
-     <?php $this->load->view("mauza/mauza_js");?>
-
-   <select name="division_id" id="division" onchange="names_by_division();">
-    <option value="">Select Division</option>
-    <?php foreach($d_lists as $list) {?>
-    <option value="<?php echo $list->division_id; ?>"><?php echo $list->division_name; ?></option>
-    <?php } ?>
-    </select>
-    <select name="district_id" id="district" onchange="names_by_district();">
-    <option value="">Select District</option>
-    <?php foreach($dis_lists as $list) {?>
-    <option value="<?php echo $list->district_id; ?>"><?php echo $list->district_name; ?></option>
-    <?php } ?>
-    </select>
-    <select name="tehsil_id" id="subdivision" onchange="names_by_subdivision();">
-    <option value="">Select Tehsil</option>
-    <?php foreach($subdiv_list as $list) {?>
-    <option value="<?php echo $list->tehsil_id; ?>"><?php echo $list->tehsil_name;?></option>
-    <?php } ?>
-    </select>
-    <select name="q_id" id="qcircle" onchange="names_by_qgoicircle();">
-    <option value="">Select Qanungoicircle</option>
-    <?php foreach($q_list as $list) {?>
-    <option value="<?php echo $list->q_id; ?>"><?php echo $list->q_circle; ?></option>
-    <?php } ?>
-    </select>
-    <select name="p_id" id="patwar" onchange="names_by_patwarcircle();">
-    <option value="">Select Patwar</option>
-    <?php foreach($patwarcircle_list as $list) {?>
-    <option value="<?php echo $list->p_id; ?>"><?php echo $list->patwar_circle; ?></option>
-    <?php } ?>
-    </select>
-
-                    </div>
-
-
+<?php
+$mouza_str = '';
+$p_total = 0;
+$e_total = 0;
+$total_ga = 0;
+$pg_total ='';
+$ev_total = '';
+$vc_total = '';
+if(!empty($survey_list )) {
+    foreach ($survey_list as $list) {
+        $total_ga += ($list->schedule_rate + $list->market_rate);
+        $pga = json_decode($list->public_path, true);
+        if ($pga) {
+            foreach ($pga as $pg) {
+                if ($pg['public_path_ownership'] === 'provincial_govt') {
+                    $p_total += $pg['pp_area'];
+                } else if ($pg['public_path_ownership'] === 'ex-evacuee') {
+                    $e_total += $pg['pp_area'];
+                }
+            }
+        }
+    }
+}
+?>
 <div class="table">
+    <div class="counts">
+        Total NO of Survey: <?php echo count($survey_list);?>
+        Total Govt Area: <?php echo $p_total + $e_total;?>
+        Total GA Price: <?php echo $total_ga?>
+    </div>
   <div class="head">
-    <h5 class="iFrames">Mauza</h5>
+    <h5 class="iFrames">Survey</h5>
           	 <?php
                 $attributes = array('class' => 'basicBtn header_button','style' => ' margin-right: 290px;' );
                 echo anchor('registration/add','Add Survey',$attributes);
@@ -140,27 +130,65 @@
      <table cellpadding="0" cellspacing="0" border="0" class="display" id="propertylist">
             	<thead>
                 	<tr>
-                        <td width="5%">Sr. No.</td>
-                        <td width="15%">Mauza</td>
-                        <td width="10%">Hadbast No.</td>
-                        <td width="15%">Patwar Circle</td>
-                        <td width="20%">Qanungoi Circle</td>
-                        <td width="15%">Sub Division</td>
+                        <td width="15%">Name of Housing Scheme</td>
+                        <td width="10%">Mouza.</td>
+                        <td width="15%">Area of Scheme</td>
+                        <td width="20%">PG Area</td>
+                        <td width="15%">Evacuee Area</td>
+                        <td width="15%">VLC Land Area</td>
+                        <td width="15%">Total Area</td>
+                        <td width="15%">PG Area Price</td>
+                        <td width="15%">VCL Area Price</td>
+                        <td width="15%">Evacuee Price</td>
+                        <td width="15%">Total Price</td>
                         <td width="10%">Action</td>
                     </tr>
                 </thead>
                 <tbody>
                 <?php $i = 1;?>
-                <?php foreach($mauza_list as $list){ ?>
+                <?php
+                foreach($survey_list as $list){ ?>
                 	<tr class="gradeA" >
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $list->mouza_name; ?></td>
-                        <td><?php echo $list->hadbast; ?></td>
-                         <td><?php echo $list->patwar_circle; ?></td>
-                        <td><?php echo $list->q_circle; ?></td>
-                        <td><?php echo $list->tehsil_name; ?></td>
-                        <td>&nbsp;&nbsp;<?php echo anchor('mauza/edit/'.$list->mauza_id,'Edit'); ?>
-                            <?php echo anchor('mauza/mauza_detail/'.$list->mauza_id,'|view'); ?>
+                        <td><?php echo $list->housing_scheme; ?></td>
+                        <td><?php
+                            $mouzas = json_decode($list->khasra_details, true);
+                            if($mouzas){
+                                foreach($mouzas as $mouza){
+                                    $mouza_str .= $mouza['mouza'].',';
+                                }
+                            }
+                            echo rtrim($mouza_str,',');
+                            ?></td>
+                        <td><?php echo $list->total_area_scheme; ?></td>
+                        <td><?php
+                            $pga = json_decode($list->public_path, true);
+                            if($pga){
+                                foreach($pga as $pg){
+                                    if($pg['public_path_ownership'] === 'provincial_govt'){
+                                        $pg_total .= $pg['pp_area'].',';
+                                    }else if($pg['public_path_ownership']  === 'ex-evacuee'){
+                                        $ev_total .= $pg['pp_area'].',';
+                                    }else if($pg['public_path_ownership']  === 'village_common_land'){
+                                        $vc_total .= $pg['pp_area'].',';
+                                    }
+                                }
+                            }
+                            echo rtrim($pg_total, ',');
+                            ?></td>
+                        <td><?php echo rtrim($ev_total, ','); ?></td>
+                        <td><?php echo rtrim($vc_total, ','); ?></td>
+                        <td><?php echo $list->total_area_public; ?></td>
+                        <td><?php echo $list->schedule_rate; ?></td>
+                        <td><?php echo $list->market_rate; ?></td>
+                         <td><?php echo $list->dpac_rate; ?></td>
+                        <td><?php
+                            $sr = (int)$list->schedule_rate;
+                            $mr = (int)$list->market_rate;
+                            $dpr = (int)$list->dpac_rate;
+                            echo $sr + $mr + $dpr;
+                            ?></td>
+                        <td>&nbsp;&nbsp;<?php echo anchor('registration/edit/'.$list->id,'Edit'); ?>
+<!--                            --><?php //echo anchor('mauza/mauza_detail/'.$list->mauza_id,'|view'); ?>
                         </td>
                     </tr>
                 <?php

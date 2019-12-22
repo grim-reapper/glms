@@ -1,7 +1,7 @@
-<script type="text/javascript">  
+<script type="text/javascript">
 
-function add_feed(id)  
-{  
+function add_feed(id)
+{
      var counter = $('#'+id+'_counter').val();
      counter = parseInt(counter);
     // alert(counter);
@@ -13,8 +13,8 @@ function add_feed(id)
    html+='</div></div>';
    $('#'+id).append(html);
    $('#'+id+'_counter').val(counter);
-  
-  } 
+
+  }
     function remove_new(div)
     {
         //alert('sad');
@@ -22,14 +22,14 @@ function add_feed(id)
        // alert(abc);
        // alert(div);
       $('#1'+div).remove();
-      
+
        // $('#1education_'+counter).remove();
-       
+
        //alert($('#1'+n));
-        
+
     }
-     
-</script> 
+
+</script>
 <?php $this->load->view("property/property_js");?>
 <?php
 
@@ -39,7 +39,7 @@ echo form_open_multipart('mauza/update', $attributes);
 ?>
 <!-- Input text fields -->
 <fieldset>
-  <div class="widget first_form"> 
+  <div class="widget first_form">
   <div class="head">
     <h5 class="iList">Mauza Add</h5>
   </div>
@@ -48,7 +48,7 @@ echo form_open_multipart('mauza/update', $attributes);
       <?php echo validation_errors(); ?>
     </div>
   <?php } ?>
-  <div class="rowElem  noborder"> 
+  <div class="rowElem  noborder">
   <label>Sub Division:</label>
   <div class="formRight">
      <select name="tehsil_id" id="tehsil" onchange="get_qanungoi_circle();">
@@ -60,12 +60,12 @@ echo form_open_multipart('mauza/update', $attributes);
       <?php } } ?>
     </select>
   </div>
-  
+
     <label>Qanungoi Circle:</label>
     <div class="formRight">
       <select name="q_id" id="qanungoi"  onchange="get_patwar_circle();" >
         <?php foreach($qanungoicircle_list as $q_list ) {?>
-        <?php 
+        <?php
        if($q_list->q_id == $mauza_list->q_id){?>
         <option value="<?php echo $q_list->q_id; ?>" selected="selected"><?php echo $q_list->q_circle; ?></option>
         <?php   }else{ ?>
@@ -75,7 +75,7 @@ echo form_open_multipart('mauza/update', $attributes);
     </div>
     <div class="fix"></div>
     </div>
-    
+
     <div class="rowElem  noborder">
       <label>Patwar Circle:</label>
       <div class="formRight">
@@ -89,7 +89,7 @@ echo form_open_multipart('mauza/update', $attributes);
           <?php } } ?>
         </select>
       </div>
-      
+
         <label>Mauza Name:</label>
         <div class="formRight">
           <input type="text"   name="mauza_name" value="<?php  echo $mauza_list->mouza_name; ?>" />
@@ -97,7 +97,7 @@ echo form_open_multipart('mauza/update', $attributes);
         </div>
         <div class="fix"></div>
       </div>
-    
+
       <div class="rowElem">
         <label>Square Feet in Marla:</label>
          <div class="formRight" style=" width: 10%">
@@ -118,13 +118,13 @@ echo form_open_multipart('mauza/update', $attributes);
              <option value="Rural" <?php echo $mauza_list->rural_urban == 'Rural' ? 'selected ="selected"' : '' ?>>Rural </option>
              <option value="Urban" <?php echo $mauza_list->rural_urban == 'Urban' ? 'selected ="selected"' : '' ?>>Urban </option>
          </select>
-         
+
      </div>
 
 <div class="formRight" style="width:16%; margin-left: 40px;">
     <input type="checkbox" name="BAC" value="BAC" <?php echo $mauza_list->BAC == 'BAC' ? 'checked ="checked"' : '' ?>/>
    <label style="float:none; display: inline-block;">BAC</label>
-    
+
 </div>
 
         <div class="fix"></div>
@@ -169,13 +169,13 @@ echo form_open_multipart('mauza/update', $attributes);
       <label>Educational Institutes</label>
         <div class="formRight">
             <div id="education">
-              <?php 
+              <?php
                 $educational = unserialize($mauza_list->educational_institute);
                 $edu_counter = count($educational);
                ?>
           <?php if(!empty($educational)) { ?>
             <input type="hidden"   name="education_counter" value="<?php echo $edu_counter; ?>" id="education_counter" />
-            <?php 
+            <?php
             $e = 1;
             foreach($educational as $edu) { ?>
               <?php if($e == 1){ ?>
@@ -197,18 +197,18 @@ echo form_open_multipart('mauza/update', $attributes);
         <input type="button" onclick="add_feed('education')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
       <?php }?>
            </div>
-        
+
         </div>
          <label>Hospitals</label>
         <div class="formRight">
             <div id="Hospitals">
-              <?php 
+              <?php
                 $hospital = unserialize($mauza_list->Hospitals);
                 $hos_counter = count($hospital);
                ?>
           <?php if(!empty($hospital)) { ?>
             <input type="hidden" name="Hospitals_counter" value="<?php echo $hos_counter; ?>" id="Hospitals_counter" />
-            <?php 
+            <?php
             $h = 1;
             foreach($hospital as $hosp) { ?>
               <?php if($h == 1){ ?>
@@ -230,7 +230,7 @@ echo form_open_multipart('mauza/update', $attributes);
            <input type="button" onclick="add_feed('Hospitals')" name="add"  class="addbutton" style="margin-top: 0px;"/>
       <?php }?>
            </div>
-        
+
         </div>
          <div class="fix"></div>
         </div>
@@ -238,13 +238,13 @@ echo form_open_multipart('mauza/update', $attributes);
       <label>Markets</label>
         <div class="formRight">
             <div id="markets">
-              <?php 
+              <?php
                 $markets = unserialize($mauza_list->Markets);
                 $mr_counter = count($markets);
                ?>
           <?php if(!empty($markets)) { ?>
             <input type="hidden" name="markets_counter" value="<?php echo $mr_counter; ?>" id="markets_counter" />
-            <?php 
+            <?php
             $h = 1;
             foreach($markets as $mark) { ?>
               <?php if($h == 1){ ?>
@@ -265,20 +265,20 @@ echo form_open_multipart('mauza/update', $attributes);
           <input type="hidden"   name="markets_counter" value="1" id='markets_counter' />
            <input type="button" onclick="add_feed('markets')" name="add" value="" class="addbutton" style="margin-top: 0px;" />
       <?php }?>
-         
+
            </div>
-        
+
         </div>
          <label>Roads</label>
         <div class="formRight">
             <div id="roads">
-           <?php 
+           <?php
                 $roads = unserialize($mauza_list->Roads);
                 $rd_counter = count($roads);
                ?>
           <?php if(!empty($roads)) { ?>
             <input type="hidden" name="roads_counter" value="<?php echo $rd_counter; ?>" id="roads_counter" />
-            <?php 
+            <?php
             $h = 1;
             foreach($roads as $rd) { ?>
               <?php if($h == 1){ ?>
@@ -299,9 +299,9 @@ echo form_open_multipart('mauza/update', $attributes);
           <input type="hidden"   name="roads_counter" value="1" id='roads_counter' />
            <input type="button" onclick="add_feed('roads')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
       <?php }?>
-           
+
             </div>
-        
+
         </div>
          <div class="fix"></div>
         </div>
@@ -309,13 +309,13 @@ echo form_open_multipart('mauza/update', $attributes);
       <label>Archeological Sites: </label>
         <div class="formRight">
             <div id="Asites">
-               <?php 
+               <?php
                 $archeological = unserialize($mauza_list->Archeological_Sites);
                 $arch_counter = count($archeological);
                ?>
           <?php if(!empty($archeological)) { ?>
             <input type="hidden" name="Asites_counter" value="<?php echo $arch_counter; ?>" id="Asites_counter" />
-            <?php 
+            <?php
             $h = 1;
             foreach($archeological as $arch) { ?>
               <?php if($h == 1){ ?>
@@ -337,19 +337,19 @@ echo form_open_multipart('mauza/update', $attributes);
           <input type="button" onclick="add_feed('Asites')" name="add" value="" class="addbutton" style="margin-top: 0px;" />
       <?php }?>
          </div>
-           
+
        </div>
-      
+
          <label>Industries</label>
         <div class="formRight">
             <div id="industries">
-            <?php 
+            <?php
                 $industries = unserialize($mauza_list->Industries);
                 $ind_counter = count($industries);
                ?>
           <?php if(!empty($industries)) { ?>
             <input type="hidden" name="industries_counter" value="<?php echo $ind_counter; ?>" id="industries_counter" />
-            <?php 
+            <?php
             $h = 1;
             foreach($industries as $ind) { ?>
               <?php if($h == 1){ ?>
@@ -370,9 +370,9 @@ echo form_open_multipart('mauza/update', $attributes);
           <input type="hidden"   name="industries_counter" value="1" id='industries_counter' />
            <input type="button" onclick="add_feed('industries')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
       <?php }?>
-         
+
                       </div>
-        
+
         </div>
          <div class="fix"></div>
         </div>
@@ -380,13 +380,13 @@ echo form_open_multipart('mauza/update', $attributes);
       <label>Rivers And Canals:</label>
         <div class="formRight">
             <div id="randc">
-           <?php 
+           <?php
                 $randc = unserialize($mauza_list->Rivers_Canals);
                 $rc_counter = count($randc);
                ?>
           <?php if(!empty($randc)) { ?>
             <input type="hidden" name="randc_counter" value="<?php echo $rc_counter; ?>" id="randc_counter" />
-            <?php 
+            <?php
             $h = 1;
             foreach($randc as $rc) { ?>
               <?php if($h == 1){ ?>
@@ -408,18 +408,18 @@ echo form_open_multipart('mauza/update', $attributes);
           <input type="button" onclick="add_feed('randc')" name="add" value="" class="addbutton"style="margin-top: 0px;" />
       <?php }?>
             </div>
-     
+
         </div>
          <label>Others</label>
         <div class="formRight">
             <div id="others">
-           <?php 
+           <?php
                 $others = unserialize($mauza_list->others);
                 $oth_counter = count($others);
                ?>
           <?php if(!empty($others)) { ?>
             <input type="hidden" name="others_counter" value="<?php echo $oth_counter; ?>" id="others_counter" />
-            <?php 
+            <?php
             $h = 1;
             foreach($others as $oth) { ?>
               <?php if($h == 1){ ?>
@@ -439,9 +439,9 @@ echo form_open_multipart('mauza/update', $attributes);
           <input type="text"   name="others_1" value="" id='other_1'style="width: 282px;" />
           <input type="hidden"   name="others_counter" value="1" id='others_counter' />
           <input type="button" onclick="add_feed('others')" name="add" value="" class="addbutton" style="margin-top: 0px;"/>
-      <?php }?>          
+      <?php }?>
             </div>
-       
+
         </div>
          <div class="fix"></div>
         </div>
@@ -458,7 +458,7 @@ echo form_open_multipart('mauza/update', $attributes);
       <div class="formRight">
          <input type="file"   name="Photos" value="" />
       </div>
-      
+
       <div class="fix"></div>
     </div>
      <div class="rowElem">
@@ -556,10 +556,10 @@ echo form_open_multipart('mauza/update', $attributes);
              <div class="formRight">
         <input type="text" value="<?php echo $mauza_list->latitude ?> <?php echo $mauza_list->longitude ?>" name="coordinates"  readonly="readonly" id="coordinates"/>
         <input type="hidden" value="<?php echo $mauza_list->latitude ?>" name="latitude"   id="lat" />
-        <input type="hidden" value="<?php echo $mauza_list->longitude ?>" name="longitude" id="lng" /> 
+        <input type="hidden" value="<?php echo $mauza_list->longitude ?>" name="longitude" id="lng" />
         <br />
-    
-       <?php 
+
+       <?php
      $atts = array(
               'width'      => '960',
               'height'     => '800',
@@ -574,10 +574,10 @@ echo form_open_multipart('mauza/update', $attributes);
      </div>
            </div>
         </div>
-     <div id="new_1" style=" display:none" >  
-           <div class="formright" style=" margin-top: 3px;">  
-            <input type="text" name="name_" value=""  size="50">  
-        </div> 
+     <div id="new_1" style=" display:none" >
+           <div class="formright" style=" margin-top: 3px;">
+            <input type="text" name="name_" value=""  size="50">
+        </div>
          <div class="fix"></div>
         </div>
      <div class="rowElem  noborder">
@@ -586,7 +586,7 @@ echo form_open_multipart('mauza/update', $attributes);
           <input type="submit"   name="submit" value="Save" class="basicBtn"  />
         <?php
                 $attributes = array('class' => 'basicBtn a_button');
-                echo anchor('mauza','Cancel',$attributes);
+                echo anchor('registration','Cancel',$attributes);
               ?>
         </div>
         <div class="fix"></div>

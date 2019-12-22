@@ -19,39 +19,25 @@ class Registration extends CI_Controller {
 public function index()
 	{
 
-		$this->load->model('mdl_mauza');
-                $this->load->model('mdl_patwarcircle');
-                $this->load->model("mdl_subdivision");
-                $this->load->model('mdl_qanungoicircle');
-                $data['d_lists'] = $this->mdl_subdivision->division_list();
-                $data['dis_lists'] = $this->mdl_subdivision->district_list();
-                $data['subdiv_list'] = $this->mdl_subdivision->get_subdivision_list();
-                $data['q_list'] = $this->mdl_qanungoicircle->get_qanungoicircle_list();
-		$data['patwarcircle_list'] = $this->mdl_patwarcircle->get_patwarcircle_list_with_detail();
-		$data['mauza_list'] = $this->mdl_mauza->get_mauza_list_with_detail();
+		$this->load->model('mdl_survey');
+		$data['survey_list'] = $this->mdl_survey->get_all_survey();
 		$data["main"] ="registration/home";
 		$this->load->view('registration/template',$data);
 	}
 
-	public function edit($mauza_id = 0)
+	public function edit($survey_id = 0)
 	{
 
-		if($mauza_id == 0 or $mauza_id=='')
+		if($survey_id == 0 or $survey_id=='')
 		{
-			redirect("mauza");
+			redirect("registration");
 		}
 		else
 		{
-			$this->load->model("mdl_patwarcircle");
-			$this->load->model("mdl_qanungoicircle");
-			$this->load->model("mdl_subdivision");
-			$this->load->model('mdl_mauza');
+			$this->load->model('mdl_survey');
 
-			$data["patwarcircle_list"]   = $this->mdl_patwarcircle->get_patwarcircle_list();
-			$data["qanungoicircle_list"] = $this->mdl_qanungoicircle->get_qanungoicircle_list();
-			$data["subdivision_list"]    = $this->mdl_subdivision->get_subdivision_list();
-			$data["mauza_list"]          = $this->mdl_mauza->get_mauza($mauza_id);
-			$data["main"] 				 = "mauza/edit";
+			$data["survey_list"]          = $this->mdl_survey->get_survey($survey_id);
+			$data["main"] 				 = "registration/edit";
 			$this->load->view('management/template',$data);
 		}
 
@@ -60,51 +46,47 @@ public function index()
  public function update()
   {
 
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('tehsil_id', 'Sub Division', 'required');
-	    $this->form_validation->set_rules('q_id', 'Qanungoi Circle', 'required');
-	    $this->form_validation->set_rules('p_id', 'Patwar Circle', 'required');
-		$this->form_validation->set_rules('mauza_name', 'Mauza Name', 'required');
-		$this->form_validation->set_rules('fts_in_one_marla', 'Square Feet in Marla', 'required');
+//		$this->load->library('form_validation');
+//		$this->form_validation->set_rules('tehsil_id', 'Sub Division', 'required');
+//	    $this->form_validation->set_rules('q_id', 'Qanungoi Circle', 'required');
+//	    $this->form_validation->set_rules('p_id', 'Patwar Circle', 'required');
+//		$this->form_validation->set_rules('mauza_name', 'Mauza Name', 'required');
+//		$this->form_validation->set_rules('fts_in_one_marla', 'Square Feet in Marla', 'required');
 
-		if ($this->form_validation->run() == TRUE)
+		if ($this->input->server('REQUEST_METHOD') == 'POST')
 		{
-	      $this->load->model("mdl_mauza");
-		  $this->mdl_mauza->update();
+	      $this->load->model("mdl_survey");
+		  $this->mdl_survey->update();
 		  redirect('registration');
 		}
 		else
 		{
-		  redirect('registration/edit/'.$this->input->post('mauza_id'));
+		  redirect('registration/edit/'.$this->input->post('survey_id'));
 	    }
   }
 
  public function add()
   {
 
-	  		$this->load->model("mdl_patwarcircle");
-			$this->load->model("mdl_qanungoicircle");
-			$this->load->model("mdl_subdivision");
-			$this->load->model('mdl_mauza');
+			$this->load->model('mdl_survey');
 
-			$this->load->library('form_validation');
-			$this->form_validation->set_rules('tehsil_id', 'Sub Division', 'required');
-			$this->form_validation->set_rules('q_id', 'Qanungoi Circle', 'required');
-			$this->form_validation->set_rules('p_id', 'Patwar Circle', 'required');
-			$this->form_validation->set_rules('mauza_name', 'Mauza Name', 'required|is_unique[tbl_property_mauza.mouza_name]');
-			$this->form_validation->set_rules('fts_in_one_marla', 'Square Feet in Marla', 'required');
+//			$this->load->library('form_validation');
+//			$this->form_validation->set_rules('tehsil_id', 'Sub Division', 'required');
+//			$this->form_validation->set_rules('q_id', 'Qanungoi Circle', 'required');
+//			$this->form_validation->set_rules('p_id', 'Patwar Circle', 'required');
+//			$this->form_validation->set_rules('mauza_name', 'Mauza Name', 'required|is_unique[tbl_property_mauza.mouza_name]');
+//			$this->form_validation->set_rules('fts_in_one_marla', 'Square Feet in Marla', 'required');
 		//	$this->form_validation->set_rules('measurement_system', 'Measurement System', 'required');
 
-			if ($this->form_validation->run() == TRUE)
+			if ($this->input->server('REQUEST_METHOD') == 'POST')
 			{
-			  $this->mdl_mauza->save();
+//			    echo '<pre>';
+//			    print_r($this->input->post());die;
+			  $this->mdl_survey->save();
 			  redirect('registration');
 			}
 			else
 			{
-				$data["patwarcircle_list"]   = $this->mdl_patwarcircle->get_patwarcircle_list();
-				$data["qanungoicircle_list"] = $this->mdl_qanungoicircle->get_qanungoicircle_list();
-				$data["subdivision_list"]    = $this->mdl_subdivision->get_subdivision_list();
 				$data["main"] 				 = "registration/add";
 				$this->load->view('registration/template',$data);
 			}
@@ -122,8 +104,8 @@ public function index()
    }
     public function mauza_circle_ajax_list()
     {
-                        $this->load->model("mdl_mauza");
-                        $data["mauza_list"] = $this->mdl_mauza->ajax_mauza_list();
+                        $this->load->model("mdl_survey");
+                        $data["mauza_list"] = $this->mdl_survey->ajax_mauza_list();
 			$this->load->view("mauza/ajax_file",$data);
     }
     public function mauza_detail($mauza_id = 0){
@@ -134,8 +116,8 @@ public function index()
 		}
 		else
 		{
-                    $this->load->model('mdl_mauza');
-                    $data['mauza']            =  $this->mdl_mauza->mauza_detail($mauza_id);
+                    $this->load->model('mdl_survey');
+                    $data['mauza']            =  $this->mdl_survey->mauza_detail($mauza_id);
                     $data["main"]                =  "mauza/mauza_detail";
                     $this->load->view('management/template',$data);
 
@@ -171,13 +153,77 @@ public function index()
                 }
                 case 'patwar':
                 {
-                    $this->load->model("mdl_mauza");
-                    $data["patwar_list"] = $this->mdl_mauza->patwar_list_by_qgoi();
+                    $this->load->model("mdl_survey");
+                    $data["patwar_list"] = $this->mdl_survey->patwar_list_by_qgoi();
                     $this->load->view('mauza/ajax_element',$data);
                    // echo  $data["qgoi_list"];
                     break;
                 }
       }
   }
+
+  public function identified()
+  {
+
+      $this->load->model("mdl_survey");
+      $data['schemes'] = $this->mdl_survey->getSchemes();
+
+      $data["main"] ="registration/view_schemes";
+      $this->load->view('registration/template',$data);
+  }
+
+    public function add_scheme()
+    {
+        if ($this->input->server('REQUEST_METHOD') == 'POST')
+        {
+//			    echo '<pre>';
+//			    print_r($this->input->post());die;
+            $this->load->model("mdl_survey");
+            $this->mdl_survey->save_scheme();
+            redirect('registration/identified');
+        }
+        else {
+//            $this->load->model('mdl_mauza');
+//            $this->load->model("mdl_qanungoicircle");
+//
+//            $data['tehsil_lists'] = $this->mdl_qanungoicircle->get_qanungoicircle_list();
+//            $data['mauza_list'] = $this->mdl_mauza->get_mauza_list_with_detail();
+
+            $data["main"] = "registration/add_scheme";
+            $this->load->view('registration/template', $data);
+        }
+    }
+
+    public function edit_scheme($scheme_id = 0)
+    {
+
+        if($scheme_id == 0 or $scheme_id=='')
+        {
+            redirect("registration");
+        }
+        else
+        {
+            $this->load->model('mdl_survey');
+            $data["scheme"]          = $this->mdl_survey->getSchemeById($scheme_id);
+            $data["main"] 				 = "registration/edit_scheme";
+            $this->load->view('management/template',$data);
+        }
+
+    }
+
+    public function update_scheme()
+    {
+
+        if ($this->input->server('REQUEST_METHOD') == 'POST')
+        {
+            $this->load->model("mdl_survey");
+            $this->mdl_survey->update_scheme();
+            redirect('registration/identified');
+        }
+        else
+        {
+            redirect('registration/edit_scheme/'.$this->input->post('id'));
+        }
+    }
 }
 
