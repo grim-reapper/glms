@@ -117,7 +117,9 @@ class Mdl_survey extends CI_Model
             $public_path[$i - 1]['public_path'] = $this->input->post('public_path_'.$i);
             $public_path[$i - 1]['public_path_ownership'] = $this->input->post('public_path_ownership_'.$i);
             $public_path[$i - 1]['pp_khasra_no'] = $this->input->post('pp_khasra_no_'.$i);
-            $public_path[$i - 1]['pp_area'] = $this->input->post('pp_area_'.$i);
+            $public_path[$i - 1]['kanal'] = $this->input->post('pp_kanal_'.$i);
+            $public_path[$i - 1]['marla'] = $this->input->post('pp_marla_'.$i);
+            $public_path[$i - 1]['sqft'] = $this->input->post('pp_sqft_'.$i);
         }
         $public_paths = json_encode(array_filter($public_path));
 
@@ -200,7 +202,9 @@ class Mdl_survey extends CI_Model
             $public_path[$i - 1]['public_path'] = $this->input->post('public_path_'.$i);
             $public_path[$i - 1]['public_path_ownership'] = $this->input->post('public_path_ownership_'.$i);
             $public_path[$i - 1]['pp_khasra_no'] = $this->input->post('pp_khasra_no_'.$i);
-            $public_path[$i - 1]['pp_area'] = $this->input->post('pp_area_'.$i);
+            $public_path[$i - 1]['kanal'] = $this->input->post('pp_kanal_'.$i);
+            $public_path[$i - 1]['marla'] = $this->input->post('pp_marla_'.$i);
+            $public_path[$i - 1]['sqft'] = $this->input->post('pp_sqft_'.$i);
         }
         $public_paths = json_encode(array_filter($public_path));
 

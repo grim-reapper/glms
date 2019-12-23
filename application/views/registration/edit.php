@@ -388,9 +388,12 @@ echo form_open_multipart('registration/update', $attributes);
                     </div>
                     <div class="flex-items">
                         <label>Area (K-M-Sqft):</label>
-                        <div class="formRight">
-                            <input type="text" name="pp_area_<?php echo $e?>" value="<?php echo $pp['pp_area']?>" />
-                        </div>
+                        <input type="text" name="pp_kanal_<?php echo $e?>" id="kanal" size="4" style=" width:20%" maxlength="5" value="<?php echo $pp['kanal']?>">
+                        :
+                        <input type="text" name="pp_marla_<?php echo $e?>" id="marla" size="5" style=" width:25%" maxlength="2" value="<?php echo $pp['marla']?>">
+                        :
+                        <input type="text" name="pp_sqft_<?php echo $e?>" id="sqft" size="6" style=" width:25%" maxlength="3" value="<?php echo $pp['sqft']?>">
+
                     </div>
                 </div>
         <?php $e++;}?>

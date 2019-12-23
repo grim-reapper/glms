@@ -89,9 +89,11 @@
             </div>
             <div class="flex-items">
                 <label>Area (K-M-Sqft):</label>
-                <div class="formRight">
-                    <input type="text" name="${'pp_area_'+counter}" value="" />
-                </div>
+                    <input type="text" name="${'pp_kanal_'+counter}" id="kanal" size="4" style=" width:20%" maxlength="5">
+                    :
+                    <input type="text" name="${'pp_marla_'+counter}" id="marla" size="5" style=" width:25%" maxlength="2">
+                    :
+                    <input type="text" name="${'pp_sqft_'+counter}" id="sqft" size="6" style=" width:25%" maxlength="3">
             </div>
             <div class="flex-items">
                  <div class="remove1" onclick=remove_new("${id+'_'+counter}");></div><label></label><div class="formright" >
@@ -362,10 +364,13 @@ echo form_open_multipart('registration/add', $attributes);
                 </div>
             </div>
             <div class="flex-items">
-                <label>Area (K-M-Sqft):</label>
-                <div class="formRight">
-                    <input type="text" name="pp_area_1" value="" />
-                </div>
+                    <label>Area (K-M-Sqft):</label>
+                    <input type="text" name="pp_kanal_1" id="kanal" size="4" style=" width:20%" maxlength="5">
+                    :
+                    <input type="text" name="pp_marla_1" id="marla" size="5" style=" width:25%" maxlength="2">
+                    :
+                    <input type="text" name="pp_sqft_1" id="sqft" size="6" style=" width:25%" maxlength="3">
+
             </div>
             <div class="flex-items">
                 <input type="button" onclick="add_public_path('p_path')" name="add" value="" class="addbutton" style="margin-top: 0px;">
