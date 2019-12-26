@@ -202,10 +202,19 @@ $v_sqft = 0;
                         if (!empty($v_sqft)) {
                             echo '-'.$v_sqft;
                         } ?></td>
+                    <?php
+                    $default_price = $list->dpac_rate;
+                    if(!empty($list->market_rate)) {
+                        $default_price = $list->market_rate;
+                    }
+                    if(!empty($list->schedule_rate)) {
+                        $default_price = $list->schedule_rate;
+                    }
+                    ?>
                     <td><?php echo $list->total_area_public; ?></td>
-                    <td><?php echo $list->schedule_rate; ?></td>
-                    <td><?php echo $list->market_rate; ?></td>
-                    <td><?php echo $list->dpac_rate; ?></td>
+                    <td><?php echo $default_price; ?></td>
+                    <td><?php echo $default_price; ?></td>
+                    <td><?php echo $default_price; ?></td>
                     <td><?php
                         $sr = (int) $list->schedule_rate;
                         $mr = (int) $list->market_rate;

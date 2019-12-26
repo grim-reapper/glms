@@ -80,13 +80,16 @@ public function index()
 
 			if ($this->input->server('REQUEST_METHOD') == 'POST')
 			{
-//			    echo '<pre>';
-//			    print_r($this->input->post());die;
+			    if(empty($this->input->post('housing_scheme_id'))){
+			        $this->session->set_flashdata('error', 'Please complete the form below');
+                    redirect('registration/add');
+                }
 			  $this->mdl_survey->save();
 			  redirect('registration');
 			}
 			else
 			{
+                $data['schemes'] = $this->mdl_survey->getSchemes();
 				$data["main"] 				 = "registration/add";
 				$this->load->view('registration/template',$data);
 			}

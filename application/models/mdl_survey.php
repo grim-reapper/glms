@@ -84,12 +84,11 @@ class Mdl_survey extends CI_Model
 
     public function get_all_survey()
     {
-
-        $this->db->select("*");
-        $this->db->from('survey_form');
-        $this->db->order_by("created_at", "DESC");
-        $query = $this->db->get();
-        return $query->result();
+        $query = $this->db->query("SELECT sf.*, hs.housing_scheme FROM survey_form sf, housing_schemes hs WHERE sf.housing_scheme_id = hs.id");
+        if($query->num_rows() > 0){
+            return $query->result();
+        }
+        return new stdClass();
     }
 
     public function get_survey($survey_id = 0)
@@ -128,12 +127,14 @@ class Mdl_survey extends CI_Model
         $c2 = $this->input->post('khasra_counter');
         for ($i = 1; $i <= $c2; $i++) {
             $khasra_detail[$i - 1]['khasra_no'] = $this->input->post('khasra_no_'.$i);
-            $khasra_detail[$i - 1]['area'] = $this->input->post('area_'.$i);
+            $public_path[$i - 1]['kanal'] = $this->input->post('kanal_'.$i);
+            $public_path[$i - 1]['marla'] = $this->input->post('marla_'.$i);
+            $public_path[$i - 1]['sqft'] = $this->input->post('sqft_'.$i);
             $khasra_detail[$i - 1]['mouza'] = $this->input->post('mouza_'.$i);
         }
         $khasra_details = json_encode(array_filter($khasra_detail));
         $data = array(
-            'housing_scheme' => $this->input->post('housing_scheme'),
+            'housing_scheme_id' => $this->input->post('housing_scheme_id'),
             'location' => $this->input->post('location'),
             'owners' => $owners,
             'contact_person_name' => $this->input->post('contact_person_name'),
@@ -220,7 +221,7 @@ class Mdl_survey extends CI_Model
 
         {
             $data = array(
-                'housing_scheme' => $this->input->post('housing_scheme'),
+                'housing_scheme_id' => $this->input->post('housing_scheme_id'),
                 'location' => $this->input->post('location'),
                 'owners' => $owners,
                 'contact_person_name' => $this->input->post('contact_person_name'),
@@ -307,7 +308,7 @@ class Mdl_survey extends CI_Model
 
     public function getSchemes()
     {
-        $query = $this->db->query("SELECT * from housing_schemes ORDER BY id DESC");
+        $query = $this->db->query("SELECT hs.*, COUNT(sf.housing_scheme_id) as total from housing_schemes hs LEFT JOIN survey_form sf ON  hs.id = sf.housing_scheme_id GROUP BY hs.id ORDER BY hs.id DESC");
         if ($query->num_rows() > 0) {
             return $query->result();
         }

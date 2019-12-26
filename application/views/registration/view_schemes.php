@@ -108,6 +108,7 @@
                         <td width="15%">Mouza</td>
                         <td width="20%">Years of Approval</td>
                         <td width="15%">Status</td>
+                        <td width="5%">Total Survey</td>
                         <td width="10%">Action</td>
                     </tr>
                 </thead>
@@ -121,6 +122,7 @@
                         <td><?php echo $list->mouza_name; ?></td>
                         <td><?php echo $list->approval_year; ?></td>
                         <td><?php echo $list->status; ?></td>
+                        <td><?php echo $list->total; ?></td>
                         <td>&nbsp;&nbsp;<?php echo anchor('registration/edit_scheme/'.$list->id,'Edit'); ?>
 <!--                            --><?php //echo anchor('mauza/mauza_detail/'.$list->mauza_id,'|view'); ?>
                         </td>

@@ -32,7 +32,7 @@
         <div class="flex-items">
         <label>CNIC:</label>
     <div class="formRight">
-        <input type="text" name="${id+'_cnic_'+counter}" value=""/>
+        <input type="text" name="${id+'_cnic_'+counter}" value="" class="owner_cnic"/>
         </div>
         </div>
         <div class="flex-items">
@@ -89,11 +89,11 @@
             </div>
             <div class="flex-items">
                 <label>Area (K-M-Sqft):</label>
-                    <input type="text" name="${'pp_kanal_'+counter}" id="kanal" size="4" style=" width:20%" maxlength="5">
+                    <input type="text" name="${'pp_kanal_'+counter}" id="kanal" class="kanal" size="4" style=" width:20%" maxlength="5">
                     :
-                    <input type="text" name="${'pp_marla_'+counter}" id="marla" size="5" style=" width:25%" maxlength="2">
+                    <input type="text" name="${'pp_marla_'+counter}" id="marla" class="marla" size="5" style=" width:25%" maxlength="2">
                     :
-                    <input type="text" name="${'pp_sqft_'+counter}" id="sqft" size="6" style=" width:25%" maxlength="3">
+                    <input type="text" name="${'pp_sqft_'+counter}" id="sqft" class="sqft" size="6" style=" width:25%" maxlength="3">
             </div>
             <div class="flex-items">
                  <div class="remove1" onclick=remove_new("${id+'_'+counter}");></div><label></label><div class="formright" >
@@ -117,10 +117,13 @@
                 </div>
             </div>
             <div class="flex-items">
-                <label>Area:</label>
-                <div class="formRight">
-                    <input type="text"   name="${'area_'+counter}" value=""/>
-                </div>
+                <label>Area (K-M-Sqft):</label>
+                    <input type="text" name="${'kanal_'+counter}" id="kanal_1" class="kanal_1" size="4" style=" width:20%" maxlength="5">
+                    :
+                    <input type="text" name="${'marla_'+counter}" id="marla_1" class="marla_1" size="5" style=" width:25%" maxlength="2">
+                    :
+                    <input type="text" name="${'sqft_'+counter}" id="sqft_1" size="6" class="sqft_1" style=" width:25%" maxlength="3">
+
             </div>
             <div class="flex-items">
                 <label>Mouza:</label>
@@ -174,10 +177,22 @@ echo form_open_multipart('registration/add', $attributes);
                 <?php echo validation_errors(); ?>
             </div>
         <?php } ?>
+        <?php if($this->session->flashdata('error')) { ?>
+            <div class="errors">
+                <?php echo $this->session->flashdata('error'); ?>
+            </div>
+        <?php } ?>
         <div class="rowElem  noborder">
             <label>Name of Housing Scheme:</label>
             <div class="formRight">
-                <input type="text"   name="housing_scheme" value="" />
+                <select name="housing_scheme_id" id="">
+                    <?php if(!empty($schemes)) { ?>
+                        <option value="">Select scheme</option>
+                        <?php foreach($schemes as $scheme) {?>
+                            <option value="<?php echo $scheme->id?>"><?php echo $scheme->housing_scheme;?></option>
+                        <?php }?>
+                    <?php }?>
+                </select>
             </div>
 
             <label>Choose Location</label>
@@ -201,7 +216,7 @@ echo form_open_multipart('registration/add', $attributes);
             <div class="flex-items">
                 <label>CNIC:</label>
                 <div class="formRight">
-                    <input type="text"   name="owner_cnic_1" value=""/>
+                    <input type="text"   name="owner_cnic_1" value="" class="owner_cnic"/>
                 </div>
             </div>
             <div class="flex-items">
@@ -224,8 +239,8 @@ echo form_open_multipart('registration/add', $attributes);
             </div>
             <label style="width: 100px;">CNIC</label>
             <div class="formRight" style="width: 150px;">
-                <div id="contact_person_cnic">
-                    <input type="text"   name="contact_person_cnic" value="" id='contact_person_cnic' style="width: 150px;" />
+                <div id="contact_person_cnicc">
+                    <input type="text" name="contact_person_cnic" value="" id='contact_person_cnic' style="width: 150px;" />
                 </div>
 
             </div>
@@ -273,7 +288,12 @@ echo form_open_multipart('registration/add', $attributes);
             <div class="flex-items">
                 <label>Area:</label>
                 <div class="formRight">
-                    <input type="text"   name="area_1" value=""/>
+                    <label>Area (K-M-Sqft):</label>
+                    <input type="text" name="kanal_1" id="kanal_1" class="kanal_1" size="4" style=" width:20%" maxlength="5">
+                    :
+                    <input type="text" name="marla_1" id="marla_1" class="marla_1" size="5" style=" width:25%" maxlength="2">
+                    :
+                    <input type="text" name="sqft_1" id="sqft_1" size="6" class="sqft_1" style=" width:25%" maxlength="3">
                 </div>
             </div>
             <div class="flex-items">
@@ -290,7 +310,7 @@ echo form_open_multipart('registration/add', $attributes);
             <label>Total area of Scheme(All Mouzas)</label>
             <div class="formRight">
                 <div id="total_area">
-                    <input type="text"   name="total_area_scheme" value="" id="total_area" style="width: 282px;"/>
+                    <input type="text"   name="total_area_scheme" value="" id="total_area" readonly style="width: 282px;"/>
                 </div>
 
             </div>
@@ -365,11 +385,11 @@ echo form_open_multipart('registration/add', $attributes);
             </div>
             <div class="flex-items">
                     <label>Area (K-M-Sqft):</label>
-                    <input type="text" name="pp_kanal_1" id="kanal" size="4" style=" width:20%" maxlength="5">
+                    <input type="text" name="pp_kanal_1" id="kanal" class="kanal" size="4" style=" width:20%" maxlength="5">
                     :
-                    <input type="text" name="pp_marla_1" id="marla" size="5" style=" width:25%" maxlength="2">
+                    <input type="text" name="pp_marla_1" id="marla" class="marla" size="5" style=" width:25%" maxlength="2">
                     :
-                    <input type="text" name="pp_sqft_1" id="sqft" size="6" style=" width:25%" maxlength="3">
+                    <input type="text" name="pp_sqft_1" id="sqft" size="6" class="sqft" style=" width:25%" maxlength="3">
 
             </div>
             <div class="flex-items">
@@ -380,7 +400,7 @@ echo form_open_multipart('registration/add', $attributes);
             <label>Total Area of Public Path etc. </label>
             <div class="formRight">
                 <div id="total_area_public">
-                    <input type="text"   name="total_area_public" value=""  id='total_area_public' style="width: 282px;"/>
+                    <input type="text"   name="total_area_public" value=""  id='total_area_public' readonly style="width: 282px;"/>
                 </div>
             </div>
 
@@ -505,3 +525,186 @@ echo form_open_multipart('registration/add', $attributes);
         align-items: center;
     }
 </style>
+<script>
+    $(function() {
+            $("#contact_person_cnic,.owner_cnic").mask("99999-9999999-9");
+        $('.sqft').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            // total_area_public
+            var kanal = 0 ;
+            var sqft = 0;
+            var marla = 0;
+            sqft = $(this).val();
+
+            if(sqft>225)
+            {
+                marla = parent.find(".marla").val();
+                kanal = parent.find(".kanal").val();
+
+                marla = Number(marla) + parseInt((sqft / 225));
+                kanal = Number(kanal) + parseInt((marla / 20));
+                s = sqft % 225;
+                m = marla %20;
+
+                parent.find(".marla").val(m);
+                parent.find(".sqft").val(s);
+                parent.find(".kanal").val(kanal);
+            }
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft').each(function() {
+                var s = $(this).val();
+                if(s != ''){
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area_public').val(total_val);
+        });
+
+        $('.marla').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            var kanal = 0 ;
+            var marla = 0;
+
+            marla = parent.find(".marla").val()
+
+            if(marla>20)
+            {
+                marla = parent.find(".marla").val();
+                kanal = parent.find(".kanal").val();
+
+                kanal = Number(kanal) + parseInt((marla / 20));
+                m = marla % 20;
+
+                parent.find(".marla").val(m);
+                parent.find(".kanal").val(kanal);
+            }
+
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft').each(function() {
+                var s = $(this).val();
+                if(s != '') {
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area_public').val(total_val);
+
+        });
+
+
+
+        // khasra area start
+        $('.sqft_1').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            // total_area_public
+            var kanal = 0 ;
+            var sqft = 0;
+            var marla = 0;
+            sqft = $(this).val();
+
+            if(sqft>225)
+            {
+                marla = parent.find(".marla_1").val();
+                kanal = parent.find(".kanal_1").val();
+
+                marla = Number(marla) + parseInt((sqft / 225));
+                kanal = Number(kanal) + parseInt((marla / 20));
+                s = sqft % 225;
+                m = marla %20;
+
+                parent.find(".marla_1").val(m);
+                parent.find(".sqft_1").val(s);
+                parent.find(".kanal_1").val(kanal);
+            }
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal_1').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla_1').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft_1').each(function() {
+                var s = $(this).val();
+                if(s != ''){
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area').val(total_val);
+        });
+
+        $('.marla_1').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            var kanal = 0 ;
+            var marla = 0;
+
+            marla = parent.find(".marla_1").val();
+
+            if(marla>20)
+            {
+                marla = parent.find(".marla_1").val();
+                kanal = parent.find(".kanal_1").val();
+
+                kanal = Number(kanal) + parseInt((marla / 20));
+                m = marla % 20;
+
+                parent.find(".marla_1").val(m);
+                parent.find(".kanal_1").val(kanal);
+            }
+
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal_1').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla_1').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft_1').each(function() {
+                var s = $(this).val();
+                if(s != '') {
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area').val(total_val);
+
+        });
+    })
+</script>
