@@ -437,6 +437,15 @@ echo form_open_multipart('registration/add', $attributes);
             <div class="formRight">
                 <input type="text" name="alt_khasra_no">
             </div>
+             <label>Area (K-M-Sqft):</label>
+             <div class="formRight" style="width: 35%;">
+            <input type="text" name="alt_kanal" id="alt_kanal" class="alt_kanal" size="4" style=" width:20%" maxlength="5">
+            :
+            <input type="text" name="alt_marla" id="alt_marla" class="alt_marla" size="5" style=" width:25%" maxlength="2">
+            :
+            <input type="text" name="alt_sqft" id="alt_sqft" size="6" class="alt_sqft" style=" width:25%" maxlength="3">
+            <input type="text" id="alt_total_area" name="alt_total_area" style="width:15%;" readonly>
+             </div>
             <label>Choose File (Fard):</label>
             <div class="formRight">
                 <input type="file"  name="alt_fard" value="" />
@@ -704,6 +713,97 @@ echo form_open_multipart('registration/add', $attributes);
             });
             var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
             $('.widget').find('#total_area').val(total_val);
+
+        });
+
+        // alternative area
+        
+        // khasra area start
+        $('.alt_sqft').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            // total_area_public
+            var kanal = 0 ;
+            var sqft = 0;
+            var marla = 0;
+            sqft = $(this).val();
+
+            if(sqft>225)
+            {
+                marla = $("#alt_marla").val();
+                kanal = $("#alt_kanal").val();
+
+                marla = Number(marla) + parseInt((sqft / 225));
+                kanal = Number(kanal) + parseInt((marla / 20));
+                s = sqft % 225;
+                m = marla %20;
+
+                $("#alt_marla").val(m);
+                $("#alt_sqft").val(s);
+                $("#alt_kanal").val(kanal);
+            }
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('#alt_kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('#alt_marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('#alt_sqft').each(function() {
+                var s = $(this).val();
+                if(s != ''){
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#alt_total_area').val(total_val);
+        });
+
+        $('#alt_marla').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            var kanal = 0 ;
+            var marla = 0;
+
+            marla = $("#alt_marla").val();
+
+            if(marla>20)
+            {
+                marla = $("#alt_marla").val();
+                kanal = $("#alt_kanal").val();
+
+                kanal = Number(kanal) + parseInt((marla / 20));
+                m = marla % 20;
+
+                $("#alt_marla").val(m);
+                $("#alt_kanal").val(kanal);
+            }
+
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('#alt_kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('#alt_marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('#alt_sqft').each(function() {
+                var s = $(this).val();
+                if(s != '') {
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#alt_total_area').val(total_val);
 
         });
     })

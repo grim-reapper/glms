@@ -444,6 +444,14 @@ echo form_open_multipart('registration/update', $attributes);
             <div class="formRight">
                 <input type="text" name="alt_khasra_no" value="<?php echo $survey_list->alt_khasra_no;?>">
             </div>
+            <label>Area (K-M-Sqft):</label>
+             <div class="formRight" style="width: 35%;">
+            <input type="text" name="alt_kanal" id="alt_kanal" class="alt_kanal" size="4" style=" width:20%" maxlength="5" value="<?php echo $survey_list->alt_kanal ?>">
+            :
+            <input type="text" name="alt_marla" id="alt_marla" class="alt_marla" size="5" style=" width:25%" maxlength="2" value="<?php echo $survey_list->alt_marla ?>">
+            :
+            <input type="text" name="alt_sqft" id="alt_sqft" size="6" class="alt_sqft" style=" width:25%" maxlength="3" value="<?php echo $survey_list->alt_sqft ?>">
+            </div>
             <label>Choose File (Fard):</label>
             <div class="formRight">
                 <input type="file"  name="alt_fard" />
