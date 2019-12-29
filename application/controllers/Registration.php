@@ -35,7 +35,7 @@ public function index()
 		else
 		{
 			$this->load->model('mdl_survey');
-
+            $data['schemes'] = $this->mdl_survey->getSchemes();
 			$data["survey_list"]          = $this->mdl_survey->get_survey($survey_id);
 			$data["main"] 				 = "registration/edit";
 			$this->load->view('management/template',$data);

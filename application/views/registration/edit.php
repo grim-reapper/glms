@@ -176,7 +176,14 @@ echo form_open_multipart('registration/update', $attributes);
         <div class="rowElem  noborder">
             <label>Name of Housing Scheme:</label>
             <div class="formRight">
-                <input type="text"   name="housing_scheme" value="<?php echo $survey_list->housing_scheme;?>" />
+                <select name="housing_scheme_id" id="">
+                    <?php if(!empty($schemes)) { ?>
+                        <option value="">Select scheme</option>
+                        <?php foreach($schemes as $scheme) {?>
+                            <option value="<?php echo $scheme->id?>" <?php echo $survey_list->housing_scheme_id == $scheme->id ? 'selected' : '' ?>><?php echo $scheme->housing_scheme;?></option>
+                        <?php }?>
+                    <?php }?>
+                </select>
             </div>
 
             <label>Choose Location</label>
@@ -271,6 +278,7 @@ echo form_open_multipart('registration/update', $attributes);
         <?php
         $khasras = json_decode($survey_list->khasra_details, true);
         $kh_counter = count($khasras);
+
         ?>
         <?php if(!empty($owners)) { ?>
         <input type="hidden" name="khasra_counter" id="khasra_counter" value="<?php echo $kh_counter;?>">

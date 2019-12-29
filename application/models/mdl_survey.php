@@ -127,9 +127,9 @@ class Mdl_survey extends CI_Model
         $c2 = $this->input->post('khasra_counter');
         for ($i = 1; $i <= $c2; $i++) {
             $khasra_detail[$i - 1]['khasra_no'] = $this->input->post('khasra_no_'.$i);
-            $public_path[$i - 1]['kanal'] = $this->input->post('kanal_'.$i);
-            $public_path[$i - 1]['marla'] = $this->input->post('marla_'.$i);
-            $public_path[$i - 1]['sqft'] = $this->input->post('sqft_'.$i);
+            $khasra_detail[$i - 1]['kanal'] = $this->input->post('kanal_'.$i);
+            $khasra_detail[$i - 1]['marla'] = $this->input->post('marla_'.$i);
+            $khasra_detail[$i - 1]['sqft'] = $this->input->post('sqft_'.$i);
             $khasra_detail[$i - 1]['mouza'] = $this->input->post('mouza_'.$i);
         }
         $khasra_details = json_encode(array_filter($khasra_detail));
@@ -218,7 +218,9 @@ class Mdl_survey extends CI_Model
         $c2 = $this->input->post('khasra_counter');
         for ($i = 1; $i <= $c2; $i++) {
             $khasra_detail[$i - 1]['khasra_no'] = $this->input->post('khasra_no_'.$i);
-            $khasra_detail[$i - 1]['area'] = $this->input->post('area_'.$i);
+            $khasra_detail[$i - 1]['kanal'] = $this->input->post('kanal_'.$i);
+            $khasra_detail[$i - 1]['marla'] = $this->input->post('marla_'.$i);
+            $khasra_detail[$i - 1]['sqft'] = $this->input->post('sqft_'.$i);
             $khasra_detail[$i - 1]['mouza'] = $this->input->post('mouza_'.$i);
         }
         $khasra_details = json_encode(array_filter($khasra_detail));
