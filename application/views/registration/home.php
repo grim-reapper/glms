@@ -96,16 +96,9 @@
 $mouza_str = '';
 
 $dc_value = 0;
-$s_value = 0;
-$t_marla = 0;
-$t_kanal = 0;
-$t_sqft = 0;
-$e_marla = 0;
-$e_kanal = 0;
-$e_sqft = 0;
-$v_marla = 0;
-$v_kanal = 0;
-$v_sqft = 0;
+$dc_sqft = 0;
+$dc_kanal = 0;
+$dc_marla = 0;
 ?>
 <div class="table">
     <div class="head">
@@ -156,11 +149,26 @@ $v_sqft = 0;
 //                        echo '<pre>',
 //                        print_r($pga);
                         if ($pga) {
+
+                            $s_value = 0;
+                            $t_marla = 0;
+                            $t_kanal = 0;
+                            $v_kanal = 0;
+                            $e_kanal = 0;
+                            $t_sqft = 0;
+                            $e_marla = 0;
+
+                            $e_sqft = 0;
+                            $v_marla = 0;
+                            $v_sqft = 0;
                             foreach ($pga as $pg) {
                                 if ($pg['public_path_ownership'] === 'provincial_govt') {
                                     $t_kanal += $pg['kanal'];
+                                    $dc_kanal += $pg['kanal'];
                                     $t_marla += $pg['marla'];
+                                    $dc_marla += $pg['marla'];
                                     $t_sqft += $pg['sqft'];
+                                    $dc_sqft += $pg['sqft'];
                                     $dc_value += (($pg['kanal'] * 20) + $pg['marla'] + ($pg['sqft']) / 225) * $list->schedule_rate;
                                 } else {
                                     if ($pg['public_path_ownership'] === 'ex-evacuee') {
@@ -203,23 +211,39 @@ $v_sqft = 0;
                             echo '-'.$v_sqft;
                         } ?></td>
                     <?php
-                    $default_price = $list->dpac_rate;
-                    if(!empty($list->market_rate)) {
-                        $default_price = $list->market_rate;
+                    $price = 0;
+                    $total_price = 0;
+                    if(!empty($list->dpac_rate) && !empty($list->market_rate) && !empty($list->schedule_rate)){
+                        $price = $list->dpac_rate;
+                        $total_price = $list->dpac_rate * 3;
+
+                    }else if(empty($list->dpac_rate) && !empty($list->market_rate) && !empty($list->schedule_rate)){
+                        $price = $list->market_rate;
+                        $total_price = $list->market_rate * 3;
+                    }else if(empty($list->dpac_rate) && empty($list->market_rate) && !empty($list->schedule_rate)){
+                        $price = $list->schedule_rate;
+                        $total_price = $list->schedule_rate * 3;
+                    }else if(!empty($list->dpac_rate) && empty($list->market_rate) && !empty($list->schedule_rate)){
+                        $price = $list->dpac_rate;
+                        $total_price = $list->dpac_rate * 3;
+                    }else if(!empty($list->dpac_rate) && !empty($list->market_rate) && empty($list->schedule_rate)){
+                        $price = $list->dpac_rate;
+                        $total_price = $list->dpac_rate * 3;
+                    }else if(empty($list->dpac_rate) && !empty($list->market_rate) && empty($list->schedule_rate)){
+                        $price = $list->market_rate;
+                        $total_price = $list->market_rate * 3;
+                    }else {
+                        $price = $list->schedule_rate;
+                        $total_price = $list->schedule_rate * 3;
                     }
-                    if(!empty($list->schedule_rate)) {
-                        $default_price = $list->schedule_rate;
-                    }
+                
                     ?>
                     <td><?php echo $list->total_area_public; ?></td>
-                    <td><?php echo $default_price; ?></td>
-                    <td><?php echo $default_price; ?></td>
-                    <td><?php echo $default_price; ?></td>
+                    <td><?php echo $price; ?></td>
+                    <td><?php echo $price; ?></td>
+                    <td><?php echo $price; ?></td>
                     <td><?php
-                        $sr = (int) $list->schedule_rate;
-                        $mr = (int) $list->market_rate;
-                        $dpr = (int) $list->dpac_rate;
-                        echo $sr + $mr + $dpr;
+                        echo $total_price;
                         ?></td>
                     <td>&nbsp;&nbsp;<?php echo anchor('registration/edit/'.$list->id, 'Edit'); ?>
                         <!--                            --><?php //echo anchor('mauza/mauza_detail/'.$list->mauza_id,'|view');
@@ -239,15 +263,15 @@ $v_sqft = 0;
             </tr>
             <tr>
                 <?php
-                $sq = $t_sqft % 225;
-                $mr = $t_sqft / 225;
-                $m = $t_marla + (int) $mr;
+                $sq = $dc_sqft % 225;
+                $mr = $dc_sqft / 225;
+                $m = $dc_marla + (int) $mr;
                 $marla = $m % 20;
                 $k = $m / 20;
-                $t_kanal += (int) $k;
+                $dc_kanal += (int) $k;
                 ?>
                 <td colspan="3" align="center"><strong>
-                        <?php printf("%02d", $t_kanal);
+                        <?php printf("%02d", $dc_kanal);
                         echo '-';
                         printf("%02d", $marla);
                         echo '-';

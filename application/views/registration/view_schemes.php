@@ -122,7 +122,7 @@
                         <td><?php echo $list->mouza_name; ?></td>
                         <td><?php echo $list->approval_year; ?></td>
                         <td><?php echo $list->status; ?></td>
-                        <td><?php echo $list->total; ?></td>
+                        <td><?php echo $list->total > 0 ? 'Survey' : 'Not Survey'; ?></td>
                         <td>&nbsp;&nbsp;<?php echo anchor('registration/edit_scheme/'.$list->id,'Edit'); ?>
 <!--                            --><?php //echo anchor('mauza/mauza_detail/'.$list->mauza_id,'|view'); ?>
                         </td>
