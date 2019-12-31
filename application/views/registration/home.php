@@ -243,7 +243,7 @@ $dc_marla = 0;
                         $price = $list->schedule_rate;
                         $total_price = $list->schedule_rate * 3;
                     }
-                
+
                     ?>
                     <td><?php echo $list->total_area_public; ?></td>
                     <td><?php echo $price; ?></td>
@@ -252,8 +252,8 @@ $dc_marla = 0;
                     <td><?php
                         echo $total_price;
                         ?></td>
-                    <td>&nbsp;&nbsp;<?php echo anchor('registration/edit/'.$list->id, 'Edit'); ?>
-                        <!--                            --><?php //echo anchor('mauza/mauza_detail/'.$list->mauza_id,'|view');
+                    <td width="8%">&nbsp;&nbsp;<?php echo anchor('registration/edit/'.$list->id, 'Edit'); ?>
+                            <?php echo anchor('registration/survey_detail/'.$list->id,'|view');
                         ?>
                     </td>
                 </tr>

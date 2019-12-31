@@ -111,18 +111,20 @@ public function index()
                         $data["mauza_list"] = $this->mdl_survey->ajax_mauza_list();
 			$this->load->view("mauza/ajax_file",$data);
     }
-    public function mauza_detail($mauza_id = 0){
+    public function survey_detail($survey_id = 0){
 
-        if($mauza_id == 0 or $mauza_id=='')
+        if($survey_id == 0 or $survey_id=='')
 		{
-			redirect("mauza");
+			redirect("registration");
 		}
 		else
 		{
                     $this->load->model('mdl_survey');
-                    $data['mauza']            =  $this->mdl_survey->mauza_detail($mauza_id);
-                    $data["main"]                =  "mauza/mauza_detail";
-                    $this->load->view('management/template',$data);
+                    $data['survey']            =  $this->mdl_survey->survey_detail($survey_id);
+                    $data["main"]                =  "registration/survey_detail";
+//                    echo '<pre>',
+//                        print_r($data['survey']);
+                    $this->load->view('registration/template',$data);
 
                 }
 

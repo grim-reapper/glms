@@ -428,17 +428,14 @@ class Mdl_survey extends CI_Model
         }
     }
 
-    public function mauza_detail($id)
+    public function survey_detail($id)
     {
-        $this->db->select('*');
-        $this->db->from('tbl_property_mauza as m');
-        $this->db->join('tbl_property_patwarcircle as p', 'p.p_id = m.p_id', 'left');
-        $this->db->join('tbl_property_qgoi as q', 'q.q_id = m.q_id', 'left');
-        $this->db->join('tbl_property_tehsils as t', 't.tehsil_id = m.tehsil_id', 'left');
-        $this->db->where('m.mauza_id', $id);
-        $query = $this->db->get();
 
-        return $query->row();
+        $query = $this->db->query("SELECT s.*,hs.housing_scheme FROM survey_form s, housing_schemes hs WHERE s.housing_scheme_id = hs.id AND s.id = $id");
+        if($query->num_rows() > 0){
+            return $query->row();
+        }
+        return new stdClass();
     }
 
 }
