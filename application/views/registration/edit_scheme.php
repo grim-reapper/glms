@@ -25,16 +25,20 @@ echo form_open_multipart('registration/update_scheme', $attributes);
             </div>
             <label>Area of Scheme:</label>
             <div class="formRight">
-                <input type="text"   name="scheme_area" value="<?php echo $scheme->scheme_area?>" />
+                <input type="text" name="kanal"  id="kanal"  size="4" style=" width:20%" maxlength="5"  value="<?php echo $scheme->kanal; ?>"/>
+                :
+                <input type="text" name="marla"  id="marla"  size="5" style=" width:25%" maxlength="2" value="<?php echo $scheme->marla; ?>" />
+                :
+                <input type="text" name="sqft" id="sqft"  size="6" style=" width:25%" maxlength="3"  value="<?php echo $scheme->sqft; ?>" />
             </div>
         </div>
         <div class="rowElem">
-            <label style="width: 123px;">Tehsil</label>
-            <div class="formRight" style="width:16%;">
+            <label>Tehsil</label>
+            <div class="formRight">
                 <input type="text" name="tehsil_name" value="<?php echo $scheme->tehsil_name?>">
             </div>
-            <label style="margin-left: -35px;">Mouaza:</label>
-            <div class="formRight" style="width:16%;">
+            <label>Mouaza:</label>
+            <div class="formRight">
                 <input type="text" name="mouza_name" value="<?php echo $scheme->mouza_name?>">
 
             </div>
@@ -43,11 +47,16 @@ echo form_open_multipart('registration/update_scheme', $attributes);
         <div class="rowElem  noborder">
             <label>Years of Approval:</label>
             <div class="formRight">
-                <input type="text"   name="approval_year" value="<?php echo $scheme->approval_year?>" />
+                 <select name="approval_year" id="approval_year">
+                    <option value="">Select </option>
+                    <?php for($i = date('Y'); $i >= 1950; $i--){ ?>
+                        <option value="<?php echo $i; ?>" <?php echo $i == $scheme->approval_year ? 'selected' : '' ?>><?php echo $i; ?> </option>
+                    <?php } ?>
+                </select>
             </div>
             <label>Status:</label>
             <div class="formRight">
-                <select name="status" id="status" style="width: 133px;" >
+                <select name="status" id="status">
                     <option value="">Select </option>
                     <option value="approved" <?php echo $scheme->status == 'approved' ? 'selected="selected"' : ''?>>Approved </option>
                     <option value="illegal" <?php echo $scheme->status == 'illegal' ? 'selected="selected"' : ''?>>Illegal </option>
@@ -86,3 +95,50 @@ echo form_open_multipart('registration/update_scheme', $attributes);
         align-items: center;
     }
 </style>
+<script>
+    $(function() {
+    $('#sqft').change(function(){
+          
+          var kanal = 0 ;
+          var sqft = 0;
+          var marla = 0;
+          sqft = $("#sqft").val()
+          
+          if(sqft>225)
+          {
+            marla = $("#marla").val();
+            kanal = $("#kanal").val();
+            
+            marla = Number(marla) + parseInt((sqft / 225)); 
+            kanal = Number(kanal) + parseInt((marla / 20)); 
+            s = sqft % 225;
+            m = marla %20;
+
+            $("#marla").val(m);
+            $("#sqft").val(s);
+            $("#kanal").val(kanal);
+          }
+
+        });
+        
+         $("#marla").change(function(){
+          var kanal = 0 ;
+          var marla = 0;     
+           
+          marla = $("#marla").val()
+          
+          if(marla>20)
+          {
+            marla = $("#marla").val();
+            kanal = $("#kanal").val();
+            
+            kanal = Number(kanal) + parseInt((marla / 20)); 
+            m = marla % 20;
+
+            $("#marla").val(m);
+            $("#kanal").val(kanal);
+          }     
+         
+         });    
+     });
+</script>

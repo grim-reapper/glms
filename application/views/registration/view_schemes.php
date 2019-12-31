@@ -117,8 +117,8 @@
                 foreach($schemes as $list){ ?>
                 	<tr class="gradeA" >
                         <td><?php echo $list->housing_scheme; ?></td>
-                        <td><?php echo $list->scheme_area; ?></td>
                         <td><?php echo $list->tehsil_name; ?></td>
+                        <td><?php  printf("%02d", $list->kanal); echo '-'; printf("%02d", $list->marla); echo '-'; printf("%03d", $list->sqft); ?></td>
                         <td><?php echo $list->mouza_name; ?></td>
                         <td><?php echo $list->approval_year; ?></td>
                         <td><?php echo $list->status; ?></td>

@@ -93,7 +93,6 @@
     }
 </script>
 <?php
-$mouza_str = '';
 
 $dc_value = 0;
 $dc_sqft = 0;
@@ -135,6 +134,7 @@ $dc_marla = 0;
                 <tr class="gradeA">
                     <td><?php echo $list->housing_scheme; ?></td>
                     <td><?php
+                        $mouza_str = '';
                         $mouzas = json_decode($list->khasra_details, true);
                         if ($mouzas) {
                             foreach ($mouzas as $mouza) {
@@ -164,11 +164,11 @@ $dc_marla = 0;
                             foreach ($pga as $pg) {
                                 if ($pg['public_path_ownership'] === 'provincial_govt') {
                                     $t_kanal += $pg['kanal'];
-                                    $dc_kanal += $pg['kanal'];
+                                    // $dc_kanal += $pg['kanal'];
                                     $t_marla += $pg['marla'];
-                                    $dc_marla += $pg['marla'];
+                                    // $dc_marla += $pg['marla'];
                                     $t_sqft += $pg['sqft'];
-                                    $dc_sqft += $pg['sqft'];
+                                    // $dc_sqft += $pg['sqft'];
                                     $dc_value += (($pg['kanal'] * 20) + $pg['marla'] + ($pg['sqft']) / 225) * $list->schedule_rate;
                                 } else {
                                     if ($pg['public_path_ownership'] === 'ex-evacuee') {
@@ -185,31 +185,38 @@ $dc_marla = 0;
                                 }
                             }
                         }
-                        echo $t_kanal;
+                        printf("%02d",$t_kanal); echo '-'; printf("%02d", $t_marla); echo '-'; printf("%03d", $t_sqft);
+                        $dc_kanal += $t_kanal;
+                        $dc_marla += $t_marla;
+                        $dc_sqft += $t_sqft;
+                        /*echo $t_kanal;
                         if (!empty($t_marla)) {
                             echo '-'.$t_marla;
                         }
                         if (!empty($t_sqft)) {
                             echo '-'.$t_sqft;
-                        }
+                        }*/
                         ?></td>
                     <td><?php
-                        echo $e_kanal;
+                    printf("%02d",$e_kanal); echo '-'; printf("%02d", $e_marla); echo '-'; printf("%03d", $e_sqft);
+                        /*echo $e_kanal;
                         if (!empty($e_marla)) {
                             echo '-'.$e_marla;
                         }
                         if (!empty($e_sqft)) {
                             echo '-'.$e_sqft;
-                        }
+                        }*/
                         ?></td>
                     <td><?php
-                        echo $v_kanal;
+                    printf("%02d",$v_kanal); echo '-'; printf("%02d", $v_marla); echo '-'; printf("%03d", $v_sqft);
+                        /*echo $v_kanal;
                         if (!empty($v_marla)) {
                             echo '-'.$v_marla;
                         }
                         if (!empty($v_sqft)) {
                             echo '-'.$v_sqft;
-                        } ?></td>
+                        } */
+                        ?></td>
                     <?php
                     $price = 0;
                     $total_price = 0;

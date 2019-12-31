@@ -288,7 +288,9 @@ class Mdl_survey extends CI_Model
     {
         $data = array(
             'housing_scheme' => $this->input->post('housing_scheme'),
-            'scheme_area' => $this->input->post('scheme_area'),
+            'kanal' => $this->input->post('kanal'),
+            'marla' => $this->input->post('marla'),
+            'sqft' => $this->input->post('sqft'),
             'tehsil_name' => $this->input->post('tehsil_name'),
             'mouza_name' => $this->input->post('mouza_name'),
             'approval_year' => $this->input->post('approval_year'),
@@ -304,7 +306,9 @@ class Mdl_survey extends CI_Model
     {
         $data = array(
             'housing_scheme' => $this->input->post('housing_scheme'),
-            'scheme_area' => $this->input->post('scheme_area'),
+            'kanal' => $this->input->post('kanal'),
+            'marla' => $this->input->post('marla'),
+            'sqft' => $this->input->post('sqft'),
             'tehsil_name' => $this->input->post('tehsil_name'),
             'mouza_name' => $this->input->post('mouza_name'),
             'approval_year' => $this->input->post('approval_year'),
