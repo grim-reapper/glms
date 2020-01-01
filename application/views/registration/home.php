@@ -98,6 +98,11 @@ $dc_value = 0;
 $dc_sqft = 0;
 $dc_kanal = 0;
 $dc_marla = 0;
+// village common
+$vc_value = 0;
+$vc_sqft = 0;
+$vc_kanal = 0;
+$vc_marla = 0;
 ?>
 <div class="table">
     <div class="head">
@@ -209,6 +214,9 @@ $dc_marla = 0;
                         ?></td>
                     <td><?php
                     printf("%02d",$v_kanal); echo '-'; printf("%02d", $v_marla); echo '-'; printf("%03d", $v_sqft);
+                        $vc_kanal += $v_kanal;
+                        $vc_marla += $v_marla;
+                        $vc_sqft += $v_sqft;
                         /*echo $v_kanal;
                         if (!empty($v_marla)) {
                             echo '-'.$v_marla;
@@ -265,6 +273,7 @@ $dc_marla = 0;
             <tfoot>
             <tr>
                 <td colspan="3" align="center"><strong>Total Govt Area(K-M-SQFT)</strong></td>
+                <td colspan="3" align="center"><strong>Total VLC Land Area(K-M-SQFT)</strong></td>
                 <td colspan="4" align="center"><strong>Total GA Price</strong></td>
                 <td colspan="5" align="center"><strong>Total Survey</strong></td>
             </tr>
@@ -283,6 +292,21 @@ $dc_marla = 0;
                         printf("%02d", $marla);
                         echo '-';
                         printf("%03d", $sq); ?>
+                    </strong></td>
+                    <?php
+                $vsq = $vc_sqft % 225;
+                $vr = $vc_sqft / 225;
+                $v = $vc_marla + (int) $vr;
+                $vmarla = $v % 20;
+                $vk = $v / 20;
+                $vc_kanal += (int) $vk;
+                ?>
+                <td colspan="3" align="center"><strong>
+                        <?php printf("%02d", $vc_kanal);
+                        echo '-';
+                        printf("%02d", $vmarla);
+                        echo '-';
+                        printf("%03d", $vsq); ?>
                     </strong></td>
                 <td colspan="4" align="center">
                     <strong>

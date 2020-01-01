@@ -428,6 +428,19 @@ echo form_open_multipart('registration/update', $attributes);
             </div>
             <div class="fix"></div>
         </div>
+        <div class="rowElem">
+            <label>Village Common Land Conversion to PG</label>
+            <div class="formRight">
+                <div id="industries">
+                    <select name="village_common_land" id="village_common_land">
+                        <option value="">Select conversion status</option>
+                        <option value="notice_issued" <?php echo $survey_list->village_common_land == 'notice_issued' ? 'selected' : '';?>>Notice Issued</option>
+                        <option value="response_received" <?php echo $survey_list->village_common_land == 'response_received' ? 'selected' : '';?>>Response Received</option>
+                        <option value="conversion_order_passed" <?php echo $survey_list->village_common_land == 'conversion_order_passed' ? 'selected' : '';?>>Conversion Order Passed</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="rowElem ">
             <label>Schedule Rate /Marla</label>
             <div class="formRight">

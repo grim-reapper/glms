@@ -400,18 +400,30 @@ echo form_open_multipart('registration/add', $attributes);
             <label>Total Area of Public Path etc. </label>
             <div class="formRight">
                 <div id="total_area_public">
-                    <input type="text"   name="total_area_public" value=""  id='total_area_public' readonly style="width: 282px;"/>
+                    <input type="text"   name="total_area_public" value=""  id='total_area_public' readonly/>
                 </div>
             </div>
-
             <label>Choose File (Fard)</label>
             <div class="formRight">
                 <div id="industries">
-                    <input type="file"  name="fard_file" id='fard_file'style="width: 282px;" />
+                    <input type="file"  name="fard_file" id='fard_file'/>
                 </div>
-
             </div>
+            
             <div class="fix"></div>
+        </div>
+        <div class="rowElem">
+            <label>Village Common Land Conversion to PG</label>
+            <div class="formRight">
+                <div id="industries">
+                    <select name="village_common_land" id="village_common_land">
+                        <option value="">Select conversion status</option>
+                        <option value="notice_issued">Notice Issued</option>
+                        <option value="response_received">Response Received</option>
+                        <option value="conversion_order_passed">Conversion Order Passed</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <div class="rowElem ">
             <label>Schedule Rate /Marla</label>
