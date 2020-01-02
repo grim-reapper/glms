@@ -47,7 +47,6 @@
         </div>`;
         $('#'+id).after(html);
         $('#'+id+'_counter').val(counter);
-        $(".owner_cnic").mask("99999-9999999-9");
     }
     function add_public_path(id) {
         var counter = $('#'+id+'_counter').val();
@@ -185,8 +184,8 @@ echo form_open_multipart('registration/add', $attributes);
         <?php } ?>
         <div class="rowElem  noborder">
             <label>Name of Housing Scheme:</label>
-            <div class="formRight"style="width: 15%;">
-                <select name="housing_scheme_id" id="" style="width: 100%;">
+            <div class="formRight">
+                <select name="housing_scheme_id" id="">
                     <?php if(!empty($schemes)) { ?>
                         <option value="">Select scheme</option>
                         <?php foreach($schemes as $scheme) {?>
@@ -196,12 +195,12 @@ echo form_open_multipart('registration/add', $attributes);
                 </select>
             </div>
 
-            <label style="width:14%; padding-top:11px;padding-left:3px;">Choose Location</label>
-            <div class="formRight"style="width: 15%;margin-left:-60px;">
+            <label>Choose Location</label>
+            <div class="formRight">
                 <input type="text"   name="location" value="" />
             </div>
             <label>Choose File (Copy of plan)</label>
-            <div class="formRight"style="width: 15%;">
+            <div class="formRight">
                 <input type="file" name="copy_of_plan" value="" />
             </div>
             <div class="fix"></div>
@@ -210,19 +209,19 @@ echo form_open_multipart('registration/add', $attributes);
         <div class="rowElem  noborder flex" id="owner">
             <div class="flex-items">
                 <label>Name of Owner (s):</label>
-                <div class="formRight" style=" padding-left: 49px;width: 41%;">
+                <div class="formRight">
                     <input type="text"   name="owner_name_1" value=""/>
                 </div>
             </div>
             <div class="flex-items">
-                <label style="margin-left:-48px;">CNIC:</label>
-                <div class="formRight"style="padding-left: 51px; width:64%;">
+                <label>CNIC:</label>
+                <div class="formRight">
                     <input type="text"   name="owner_cnic_1" value="" class="owner_cnic"/>
                 </div>
             </div>
             <div class="flex-items">
                 <label>Contact No:</label>
-                <div class="formRight"style="width:44%;">
+                <div class="formRight">
                     <input type="text"   name="owner_contact_1" value="" />
                 </div>
             </div>
@@ -238,17 +237,17 @@ echo form_open_multipart('registration/add', $attributes);
                 </div>
 
             </div>
-            <label style="width: 89px;">CNIC</label>
+            <label style="width: 100px;">CNIC</label>
             <div class="formRight" style="width: 150px;">
                 <div id="contact_person_cnicc">
-                    <input type="text" name="contact_person_cnic" value="" id='contact_person_cnic' style="width: 161px;" />
+                    <input type="text" name="contact_person_cnic" value="" id='contact_person_cnic' style="width: 150px;" />
                 </div>
 
             </div>
-            <label style="    margin-left: 46px;">Contact No</label>
+            <label>Contact No</label>
             <div class="formRight" style="width: 150px;">
                 <div id="contact_person_phone">
-                    <input type="text"   name="contact_person_phone" value="" id='contact_person_phone' style="width: 150px;margin-left: -45px;" />
+                    <input type="text"   name="contact_person_phone" value="" id='contact_person_phone' style="width: 150px;" />
                 </div>
 
             </div>
@@ -256,9 +255,9 @@ echo form_open_multipart('registration/add', $attributes);
         </div>
 
         <div class="rowElem">
-            <label style="width: 163px;">Category of Scheme</label>
-            <div class="formRight" style="width:19%;">
-                <select name="scheme" id="" style="width: 162px;">
+            <label style="width: 123px;">Category of Scheme</label>
+            <div class="formRight" style="width:16%;">
+                <select name="scheme" id="" style="width: 133px;">
                     <option value="">Select </option>
                     <option value="individual"> Individual</option>
                     <option value="corporate">Corporate </option>
@@ -267,7 +266,7 @@ echo form_open_multipart('registration/add', $attributes);
             </div>
             <label style="margin-left: -35px;">Sanction Status of Scheme:</label>
             <div class="formRight" style="width:16%;">
-                <select name="saction_status" id="saction_status" style="width: 162px;" >
+                <select name="saction_status" id="saction_status" style="width: 133px;" >
                     <option value="">Select </option>
                     <option value="planning_permission">Planning Permission</option>
                     <option value="approved">Approved </option>
@@ -283,24 +282,24 @@ echo form_open_multipart('registration/add', $attributes);
             <div class="flex-items">
                 <label>Khasra No:</label>
                 <div class="formRight">
-                    <input type="text" name="khasra_no_1" value="" style="width:149px;"/>
+                    <input type="text" name="khasra_no_1" value=""/>
                 </div>
             </div>
             <div class="flex-items">
-                <!--<label>Area:</label>-->
-                <div class="formRight" style="width: 83%;">
-                    <label style="margin-left:-115px;">Area (K-M-Sqft):</label>
-                    <input type="text" name="kanal_1" id="kanal_1" class="kanal_1" size="4" style=" width:15%" maxlength="5">
+                <label>Area:</label>
+                <div class="formRight">
+                    <label>Area (K-M-Sqft):</label>
+                    <input type="text" name="kanal_1" id="kanal_1" class="kanal_1" size="4" style=" width:20%" maxlength="5">
                     :
-                    <input type="text" name="marla_1" id="marla_1" class="marla_1" size="5" style=" width:15%" maxlength="2">
+                    <input type="text" name="marla_1" id="marla_1" class="marla_1" size="5" style=" width:25%" maxlength="2">
                     :
-                    <input type="text" name="sqft_1" id="sqft_1" size="6" class="sqft_1" style=" width:15%" maxlength="3">
+                    <input type="text" name="sqft_1" id="sqft_1" size="6" class="sqft_1" style=" width:25%" maxlength="3">
                 </div>
             </div>
             <div class="flex-items">
-                <label style="margin-left:-57px;">Mouza:</label>
-                <div class="formRight" style="padding-left:20px;">
-                    <input type="text"   name="mouza_1" value=""style="width:149px;" />
+                <label>Mouza:</label>
+                <div class="formRight">
+                    <input type="text"   name="mouza_1" value="" />
                 </div>
             </div>
             <div class="flex-items">
@@ -316,14 +315,12 @@ echo form_open_multipart('registration/add', $attributes);
 
             </div>
             <label>Vacant Area</label>
-            <div class="formRight" style="width: 31%;">
-            <input type="text" name="alt_kanal" id="alt_kanal" class="alt_kanal" size="4" style=" width:15%" maxlength="5">
-            :
-            <input type="text" name="alt_marla" id="alt_marla" class="alt_marla" size="5" style=" width:15%" maxlength="2">
-            :
-            <input type="text" name="alt_sqft" id="alt_sqft" size="6" class="alt_sqft" style=" width:15%" maxlength="3">
-            <!--<input type="text" id="alt_total_area" name="alt_total_area" style="width:15%;" readonly>-->
-             </div>
+            <div class="formRight">
+                <div id="vacant_area">
+                    <input type="text"   name="vacant_area" value="" id='vacant_area' style="width: 282px;" />
+                </div>
+
+            </div>
             <div class="fix"></div>
         </div>
         <div class="rowElem">
@@ -355,7 +352,7 @@ echo form_open_multipart('registration/add', $attributes);
         <input type="hidden" name="pp_counter" value="1" id="p_path_counter">
         <div class="rowElem  noborder flex" id="p_path">
             <div class="flex-items">
-                <label style="margin-left:15px;">Public Paths, Watercourses:</label>
+                <label>Public Paths, Watercourses:</label>
                 <div class="formRight">
                     <select name="public_path_1" id="" style="width: 133px;">
                         <option value="">Select </option>
@@ -369,7 +366,7 @@ echo form_open_multipart('registration/add', $attributes);
                 </div>
             </div>
             <div class="flex-items">
-                <label style="padding-left:35px;padding-top:11px;">Ownership:</label>
+                <label>Ownership:</label>
                 <div class="formRight">
                     <select name="public_path_ownership_1" id="" style="width: 133px;">
                         <option value="">Select </option>
@@ -381,18 +378,18 @@ echo form_open_multipart('registration/add', $attributes);
                 </div>
             </div>
             <div class="flex-items">
-                <label style="padding-left:28px;padding-top:11px;">Khasra No:</label>
+                <label>Khasra No:</label>
                 <div class="formRight">
                     <input type="text" name="pp_khasra_no_1" value="" />
                 </div>
             </div>
             <div class="flex-items">
                     <label>Area (K-M-Sqft):</label>
-                    <input type="text" name="pp_kanal_1" id="kanal" class="kanal" size="4" style=" width:15%" maxlength="5">
+                    <input type="text" name="pp_kanal_1" id="kanal" class="kanal" size="4" style=" width:20%" maxlength="5">
                     :
-                    <input type="text" name="pp_marla_1" id="marla" class="marla" size="5" style=" width:15%" maxlength="2">
+                    <input type="text" name="pp_marla_1" id="marla" class="marla" size="5" style=" width:25%" maxlength="2">
                     :
-                    <input type="text" name="pp_sqft_1" id="sqft" size="6" class="sqft" style=" width:15%" maxlength="3">
+                    <input type="text" name="pp_sqft_1" id="sqft" size="6" class="sqft" style=" width:25%" maxlength="3">
 
             </div>
             <div class="flex-items">
@@ -453,13 +450,13 @@ echo form_open_multipart('registration/add', $attributes);
                 <input type="text" name="alt_khasra_no">
             </div>
              <label>Area (K-M-Sqft):</label>
-             <div class="formRight" style="width: 31%;">
-            <input type="text" name="alt_kanal" id="alt_kanal" class="alt_kanal" size="4" style=" width:15%" maxlength="5">
+             <div class="formRight" style="width: 35%;">
+            <input type="text" name="alt_kanal" id="alt_kanal" class="alt_kanal" size="4" style=" width:20%" maxlength="5">
             :
-            <input type="text" name="alt_marla" id="alt_marla" class="alt_marla" size="5" style=" width:15%" maxlength="2">
+            <input type="text" name="alt_marla" id="alt_marla" class="alt_marla" size="5" style=" width:25%" maxlength="2">
             :
-            <input type="text" name="alt_sqft" id="alt_sqft" size="6" class="alt_sqft" style=" width:15%" maxlength="3">
-            <!--<input type="text" id="alt_total_area" name="alt_total_area" style="width:15%;" readonly>-->
+            <input type="text" name="alt_sqft" id="alt_sqft" size="6" class="alt_sqft" style=" width:25%" maxlength="3">
+            <input type="text" id="alt_total_area" name="alt_total_area" style="width:15%;" readonly>
              </div>
             <label>Choose File (Fard):</label>
             <div class="formRight">
@@ -486,13 +483,19 @@ echo form_open_multipart('registration/add', $attributes);
             </div>
             <div class="fix"></div>
         </div>
-        
+        <div class="rowElem ">
+            <label>Notes</label>
+            <div class="formRight">
+                <textarea name="notes" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="fix"></div>
+        </div>
         <div id="form_main">
             <div class="rowElem">
                 <label>Status of Exchange Approval</label>
                 <div class="formRight">
                     <select name="exchange_approval" id="exchange_approval">
-                        <option value=""> Select Status </option>
+                        <option value=""> Select NA </option>
                         <option value="pending_with_bor">Pending with BOR</option>
                         <option value="sanction_received">Sanction Received</option>
                         <option value="implemented">Implemented</option>
@@ -508,13 +511,6 @@ echo form_open_multipart('registration/add', $attributes);
         <div id="new_1" style=" display:none" >
             <div class="formright" style=" margin-top: 3px;">
                 <input type="text" name="name_" value=""  size="50">
-            </div>
-            <div class="fix"></div>
-        </div>
-        <div class="rowElem ">
-            <label>Notes</label>
-            <div class="formRight">
-                <textarea name="notes" id="" cols="30" rows="10"></textarea>
             </div>
             <div class="fix"></div>
         </div>

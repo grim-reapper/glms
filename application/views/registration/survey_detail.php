@@ -91,7 +91,7 @@
                 <div class="label">Category of scheme:</div>
                 <div class="cotent"> <?php echo $survey->scheme; ?> </div>
                 <div class="label">Sanction status of shceme:</div>
-                <div class="cotent"> <?php echo $survey->saction_status; ?> </div>
+                <div class="cotent"> <?php echo ucwords(str_replace('_', ' ', $survey->sanction_status)); ?> </div>
             </div>
             <div class="rowElem">
                 <div class="label">Location:</div>
@@ -128,7 +128,7 @@
             </table>
             <div class="rowElem">
                 <div class="label">Previous background of Record:</div>
-                <div class="cotent"> <?php echo $survey->pbo_land; ?> </div>
+                <div class="cotent"> <?php echo ucwords(str_replace('_', ' ', $survey->pbo_land)); ?> </div>
                 <div class="label">Khasra No:</div>
                 <div class="cotent"> <?php echo $survey->khasra_no_land; ?> </div>
             </div>
@@ -167,9 +167,9 @@
                     <div class="label">Schedule Rate /Marla</div>
                     <div class="cotent"> <?php echo $survey->schedule_rate;?></div>
                     <div class="label">Market Price/Marla</div>
-                    <div class="cotent"> <?php echo $survey->market_price?></div>
+                    <div class="cotent"> <?php echo $survey->market_rate?></div>
                     <div class="label">DPAC Price/Marla</div>
-                    <div class="cotent"> <?php echo $survey->dpac_price?></div>
+                    <div class="cotent"> <?php echo $survey->dpac_rate?></div>
                 </div>
             </div>
             <div class="rowElem Odd">
@@ -202,7 +202,7 @@
                 </div>
                 <div class="rowElem">
                     <div class="label">Status of Exchange Approval</div>
-                    <div class="cotent"> <?php echo $survey->exchange_approval;?></div>
+                    <div class="cotent"> <?php echo ucwords(str_replace('_', ' ', $survey->exchange_approval));?></div>
                 </div>
             </div>
 
