@@ -388,11 +388,11 @@ echo form_open_multipart('registration/add', $attributes);
             </div>
             <div class="flex-items">
                     <label>Area (K-M-Sqft):</label>
-                    <input type="text" name="pp_kanal_1" id="kanal" class="kanal" size="4" style=" width:15%" maxlength="5">
+                    <input type="text" name="pp_kanal_1" id="kanal" class="kanal" size="4" style=" width:15%; float:none;" maxlength="5">
                     :
-                    <input type="text" name="pp_marla_1" id="marla" class="marla" size="5" style=" width:15%" maxlength="2">
+                    <input type="text" name="pp_marla_1" id="marla" class="marla" size="5" style=" width:15%; float:none;" maxlength="2">
                     :
-                    <input type="text" name="pp_sqft_1" id="sqft" size="6" class="sqft" style=" width:15%" maxlength="3">
+                    <input type="text" name="pp_sqft_1" id="sqft" size="6" class="sqft" style=" width:15%; float:none;" maxlength="3">
 
             </div>
             <div class="flex-items">

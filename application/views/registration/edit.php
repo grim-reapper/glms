@@ -295,11 +295,11 @@ echo form_open_multipart('registration/update', $attributes);
                     <div class="flex-items">
                         <label>Area:</label>
                         <div class="formRight">
-                            <input type="text" name="kanal_<?php echo $e?>" id="kanal_1" class="kanal_1" size="4" style=" width:20%" maxlength="5" value="<?php echo $khasra['kanal']?>">
+                            <input type="text" name="kanal_<?php echo $e?>" id="kanal_1" class="kanal_1" size="4" style=" width:20%; float:none;" maxlength="5" value="<?php echo $khasra['kanal']?>">
                             :
-                            <input type="text" name="marla_<?php echo $e?>" id="marla_1" class="marla_1" size="5" style=" width:25%" maxlength="2" value="<?php echo $khasra['marla']?>">
+                            <input type="text" name="marla_<?php echo $e?>" id="marla_1" class="marla_1" size="5" style=" width:25%; float:none;" maxlength="2" value="<?php echo $khasra['marla']?>">
                             :
-                            <input type="text" name="sqft_<?php echo $e?>" id="sqft_1" class="sqft_1" size="6" style=" width:25%" maxlength="3" value="<?php echo $khasra['sqft']?>">
+                            <input type="text" name="sqft_<?php echo $e?>" id="sqft_1" class="sqft_1" size="6" style=" width:25%; float:none;" maxlength="3" value="<?php echo $khasra['sqft']?>">
                         </div>
                     </div>
                     <div class="flex-items">
