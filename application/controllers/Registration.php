@@ -230,5 +230,23 @@ public function index()
             redirect('registration/edit_scheme/'.$this->input->post('id'));
         }
     }
+
+    public function download($file = null)
+    {
+        if(!empty($file)){
+            $pathinfo = pathinfo($file);
+            $file_name = $pathinfo['filename'];
+            $ext = $pathinfo['extension'];
+            $filePath = 'uploads/'.$file;
+            if(file_exists($filePath)){
+                $this->load->helper('download');
+                $replace = str_replace('https', 'http', $filePath);
+                $data = file_get_contents($replace);
+                $name = $file_name.'.'.$ext;
+                force_download($name, $data);
+            }
+        }
+        redirect('registration');
+    }
 }
 

@@ -215,7 +215,7 @@ echo form_open_multipart('registration/update', $attributes);
                     <div class="flex-items">
                         <label>CNIC:</label>
                         <div class="formRight">
-                            <input type="text"   name="owner_cnic_<?php echo $e?>" value="<?php echo $owner['cnic']?>"/>
+                            <input type="text"  class="owner_cnic" name="owner_cnic_<?php echo $e?>" value="<?php echo $owner['cnic']?>"/>
                         </div>
                     </div>
                     <div class="flex-items">
@@ -237,8 +237,8 @@ echo form_open_multipart('registration/update', $attributes);
             </div>
             <label style="width: 100px;">CNIC</label>
             <div class="formRight" style="width: 150px;">
-                <div id="contact_person_cnic">
-                    <input type="text"   name="contact_person_cnic" value="<?php echo $survey_list->contact_person_cnic;?>" id='contact_person_cnic' style="width: 150px;" />
+                <div id="contact_person_cnicd">
+                    <input type="text"  id="contact_person_cnic"  name="contact_person_cnic" value="<?php echo $survey_list->contact_person_cnic;?>" id='contact_person_cnic' style="width: 150px;" />
                 </div>
 
             </div>
@@ -561,3 +561,277 @@ echo form_open_multipart('registration/update', $attributes);
         align-items: center;
     }
 </style>
+<script>
+    $(function() {
+            $("#contact_person_cnic,.owner_cnic").mask("99999-9999999-9");
+        $('.sqft').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            // total_area_public
+            var kanal = 0 ;
+            var sqft = 0;
+            var marla = 0;
+            sqft = $(this).val();
+
+            if(sqft>225)
+            {
+                marla = parent.find(".marla").val();
+                kanal = parent.find(".kanal").val();
+
+                marla = Number(marla) + parseInt((sqft / 225));
+                kanal = Number(kanal) + parseInt((marla / 20));
+                s = sqft % 225;
+                m = marla %20;
+
+                parent.find(".marla").val(m);
+                parent.find(".sqft").val(s);
+                parent.find(".kanal").val(kanal);
+            }
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft').each(function() {
+                var s = $(this).val();
+                if(s != ''){
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area_public').val(total_val);
+        });
+
+        $('.marla').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            var kanal = 0 ;
+            var marla = 0;
+
+            marla = parent.find(".marla").val()
+
+            if(marla>20)
+            {
+                marla = parent.find(".marla").val();
+                kanal = parent.find(".kanal").val();
+
+                kanal = Number(kanal) + parseInt((marla / 20));
+                m = marla % 20;
+
+                parent.find(".marla").val(m);
+                parent.find(".kanal").val(kanal);
+            }
+
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft').each(function() {
+                var s = $(this).val();
+                if(s != '') {
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area_public').val(total_val);
+
+        });
+
+
+
+        // khasra area start
+        $('.sqft_1').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            // total_area_public
+            var kanal = 0 ;
+            var sqft = 0;
+            var marla = 0;
+            sqft = $(this).val();
+
+            if(sqft>225)
+            {
+                marla = parent.find(".marla_1").val();
+                kanal = parent.find(".kanal_1").val();
+
+                marla = Number(marla) + parseInt((sqft / 225));
+                kanal = Number(kanal) + parseInt((marla / 20));
+                s = sqft % 225;
+                m = marla %20;
+
+                parent.find(".marla_1").val(m);
+                parent.find(".sqft_1").val(s);
+                parent.find(".kanal_1").val(kanal);
+            }
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal_1').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla_1').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft_1').each(function() {
+                var s = $(this).val();
+                if(s != ''){
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area').val(total_val);
+        });
+
+        $('.marla_1').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            var kanal = 0 ;
+            var marla = 0;
+
+            marla = parent.find(".marla_1").val();
+
+            if(marla>20)
+            {
+                marla = parent.find(".marla_1").val();
+                kanal = parent.find(".kanal_1").val();
+
+                kanal = Number(kanal) + parseInt((marla / 20));
+                m = marla % 20;
+
+                parent.find(".marla_1").val(m);
+                parent.find(".kanal_1").val(kanal);
+            }
+
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('.kanal_1').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('.marla_1').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('.sqft_1').each(function() {
+                var s = $(this).val();
+                if(s != '') {
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#total_area').val(total_val);
+
+        });
+
+        // alternative area
+        
+        // khasra area start
+        $('.alt_sqft').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            // total_area_public
+            var kanal = 0 ;
+            var sqft = 0;
+            var marla = 0;
+            sqft = $(this).val();
+
+            if(sqft>225)
+            {
+                marla = $("#alt_marla").val();
+                kanal = $("#alt_kanal").val();
+
+                marla = Number(marla) + parseInt((sqft / 225));
+                kanal = Number(kanal) + parseInt((marla / 20));
+                s = sqft % 225;
+                m = marla %20;
+
+                $("#alt_marla").val(m);
+                $("#alt_sqft").val(s);
+                $("#alt_kanal").val(kanal);
+            }
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('#alt_kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('#alt_marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('#alt_sqft').each(function() {
+                var s = $(this).val();
+                if(s != ''){
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#alt_total_area').val(total_val);
+        });
+
+        $('#alt_marla').live('change',function(){
+            var parent = $(this).parents('.flex-items');
+            var kanal = 0 ;
+            var marla = 0;
+
+            marla = $("#alt_marla").val();
+
+            if(marla>20)
+            {
+                marla = $("#alt_marla").val();
+                kanal = $("#alt_kanal").val();
+
+                kanal = Number(kanal) + parseInt((marla / 20));
+                m = marla % 20;
+
+                $("#alt_marla").val(m);
+                $("#alt_kanal").val(kanal);
+            }
+
+            var kanal_val = 0;
+            var marla_val = 0;
+            var sqft_val = 0;
+            $('#alt_kanal').each(function() {
+                var k = $(this).val();
+                kanal_val += parseInt(k);
+            });
+            $('#alt_marla').each(function() {
+                var m = $(this).val();
+                if(m != ''){
+                    marla_val += parseInt(m);
+                }
+            });
+            $('#alt_sqft').each(function() {
+                var s = $(this).val();
+                if(s != '') {
+                    sqft_val += parseInt(s);
+                }
+            });
+            var total_val = kanal_val + '-' + marla_val + '-' + sqft_val;
+            $('.widget').find('#alt_total_area').val(total_val);
+
+        });
+    })
+</script>

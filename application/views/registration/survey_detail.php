@@ -208,44 +208,44 @@
 
             <div class="fix"></div>
 
-           <!--  <div class="widget">
+            <div class="widget">
                 <div class="head " style="background: white;">
                     <h5 style="background: white;">PROPERTY profile</h5>
                     <div id="profile_options">
                         <?php if ($survey->copy_of_plan != '') { ?>
-                            <a rel="prettyPhoto"
-                               href="<?php echo base_url().'uploads/'.$survey->copy_of_plan; ?>">
+                            <a
+                               href="<?php echo base_url().'registration/download/'.$survey->copy_of_plan; ?>">
                                 Copy of plan </a>
                         <?php } ?>
                         <?php if ($survey->copy_of_mutation != "") { ?>
-                            <a rel="prettyPhoto"
-                               href="<?php echo base_url().'uploads/'.$survey->copy_of_mutation; ?>">
+                            <a
+                               href="<?php echo base_url().'registration/download/'.$survey->copy_of_mutation; ?>">
                                 Copy of Mutation</a>
                         <?php } ?>
 
                         <?php if ($survey->fard_file != '') { ?>
-                            <a rel="prettyPhoto"
-                               href="<?php echo base_url().'uploads/'.$survey->fard_file; ?>">
+                            <a
+                               href="<?php echo base_url().'registration/download/'.$survey->fard_file; ?>">
                                 Fard File </a>
                         <?php } ?>
                         <?php if ($survey->alt_site_plan != '') { ?>
-                            <a rel="prettyPhoto"
-                               href="<?php echo base_url().'uploads/'.$survey->alt_site_plan; ?>">
+                            <a
+                               href="<?php echo base_url().'registration/download/'.$survey->alt_site_plan; ?>">
                                 Site plan </a>
                         <?php } ?>
                         <?php if ($survey->alt_fard != '') { ?>
-                            <a rel="prettyPhoto"
-                               href="<?php echo base_url().'uploads/'.$survey->alt_fard; ?>">
+                            <a
+                               href="<?php echo base_url().'registration/download/'.$survey->alt_fard; ?>">
                                 Alternative Fard file </a>
                         <?php } ?>
                         <?php if ($survey->ref_to_bor != '') { ?>
-                            <a rel="prettyPhoto"
-                               href="<?php echo base_url().'uploads/'.$survey->ref_to_bor; ?>">
+                            <a
+                               href="<?php echo base_url().'registration/download/'.$survey->ref_to_bor; ?>">
                                 Reference to BOR </a>
                         <?php } ?>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="fix"></div>
         </div>
     </div>

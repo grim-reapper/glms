@@ -22,27 +22,27 @@
         counter=counter+1;
         var html = '';
         html += `
-    <div class="rowElem  noborder flex" id="${id+'_'+counter}">
+    <div class="rowElem left-pad  noborder flex" id="${id+'_'+counter}">
         <div class="flex-items">
         <label>Name of Owner (s):</label>
-    <div class="formRight">
+    <div class="formRight form-5">
         <input type="text"   name="${id+'_name_'+counter}" value=""/>
         </div>
         </div>
         <div class="flex-items">
         <label>CNIC:</label>
-    <div class="formRight">
+    <div class="formRight form-4">
         <input type="text" name="${id+'_cnic_'+counter}" value="" class="owner_cnic"/>
         </div>
         </div>
         <div class="flex-items">
         <label>Contact No:</label>
-    <div class="formRight">
+    <div class="formRight form-3">
         <input type="text" name="${id+'_contact_'+counter}" value="" />
         </div>
         </div>
         <div class="flex-items">
-        <div class="remove1" onclick=remove_new("${id+'_'+counter}");></div><label></label><div class="formright" >
+        <div class="remove1" onclick=remove_new("${id+'_'+counter}");></div><label></label><div class="formright form-3" >
         </div>
         </div>`;
         $('#'+id).after(html);
@@ -207,22 +207,22 @@ echo form_open_multipart('registration/add', $attributes);
             <div class="fix"></div>
         </div>
         <input type="hidden" name="owner_counter" value="1" id="owner_counter">
-        <div class="rowElem  noborder flex" id="owner">
+        <div class="rowElem left-pad  noborder flex" id="owner">
             <div class="flex-items">
                 <label>Name of Owner (s):</label>
-                <div class="formRight" style=" padding-left: 49px;width: 41%;">
+                <div class="formRight form-5">
                     <input type="text"   name="owner_name_1" value=""/>
                 </div>
             </div>
             <div class="flex-items">
                 <label style="margin-left:-48px;">CNIC:</label>
-                <div class="formRight"style="padding-left: 51px; width:64%;">
+                <div class="formRight form-4">
                     <input type="text"   name="owner_cnic_1" value="" class="owner_cnic"/>
                 </div>
             </div>
             <div class="flex-items">
                 <label>Contact No:</label>
-                <div class="formRight"style="width:44%;">
+                <div class="formRight form-3">
                     <input type="text"   name="owner_contact_1" value="" />
                 </div>
             </div>
@@ -327,7 +327,7 @@ echo form_open_multipart('registration/add', $attributes);
             <div class="fix"></div>
         </div>
         <div class="rowElem">
-            <label>Previous background of Record</label>
+            <label>Previous background of Land</label>
             <div class="formRight">
                 <select name="pbo_land" id="" style="width: 133px;">
                     <option value="">Select </option>
@@ -541,6 +541,20 @@ echo form_open_multipart('registration/add', $attributes);
         margin: 5px auto;
         border-radius: 5px;
     }
+    .form-3{
+      width:44% !important;
+    }
+    .form-5{
+    padding-left: 49px !important;
+    width: 41% !important;
+    }
+    .form-4{
+    padding-left: 51px !important;
+     width:64% !important;
+    }
+    .left-pad {
+    padding-left: 23px !important;
+}
     .errors p{
         padding-top:0;
     }
