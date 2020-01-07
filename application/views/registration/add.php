@@ -521,7 +521,7 @@ echo form_open_multipart('registration/add', $attributes);
         <div class="rowElem  noborder">
             <label></label>
             <div class="formRight">
-                <input type="submit"   name="submit" value="Save" class="basicBtn"  />
+                <button type="button" class="basicBtn submit-btn">Save</button>
                 <?php
                 $attributes = array('class' => 'basicBtn a_button');
                 echo anchor('registration','Cancel',$attributes);
@@ -566,6 +566,9 @@ echo form_open_multipart('registration/add', $attributes);
 </style>
 <script>
     $(function() {
+         $('.submit-btn').click(function(){
+            $('.mainForm').submit();
+        });
             $("#contact_person_cnic,.owner_cnic").mask("99999-9999999-9");
         $('.sqft').live('change',function(){
             var parent = $(this).parents('.flex-items');

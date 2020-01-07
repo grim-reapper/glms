@@ -35,7 +35,14 @@ echo form_open_multipart('registration/update_scheme', $attributes);
         <div class="rowElem">
             <label>Tehsil</label>
             <div class="formRight">
-                <input type="text" name="tehsil_name" value="<?php echo $scheme->tehsil_name?>">
+                <select name="tehsil_name" id="tehsil_name">
+                    <!-- <option value="">Select </option> -->
+                    <option value="City" <?php echo $scheme->tehsil_name == 'City' ? 'selected="selected"' : ''?>>City </option>
+                    <option value="Model Town" <?php echo $scheme->tehsil_name == 'Model Town' ? 'selected="selected"' : ''?>>Model Town </option>
+                    <option value="Cantt" <?php echo $scheme->tehsil_name == 'Cantt' ? 'selected="selected"' : ''?>>Cantt </option>
+                    <option value="Shalamar" <?php echo $scheme->tehsil_name == 'Shalamar' ? 'selected="selected"' : ''?>>Shalamar </option>
+                    <option value="Raiwind" <?php echo $scheme->tehsil_name == 'Raiwind' ? 'selected="selected"' : ''?>>Raiwind </option>
+                </select>
             </div>
             <label>Mouaza:</label>
             <div class="formRight">
@@ -66,7 +73,8 @@ echo form_open_multipart('registration/update_scheme', $attributes);
         <div class="rowElem  noborder">
             <label></label>
             <div class="formRight">
-                <input type="submit"   name="submit" value="Save" class="basicBtn"  />
+                <button type="button" class="basicBtn submit-btn">Save</button>
+                <!-- <input type="submit"   name="submit" value="Save" class="basicBtn"  /> -->
                 <?php
                 $attributes = array('class' => 'basicBtn a_button');
                 echo anchor('registration/identified','Cancel',$attributes);
@@ -97,6 +105,9 @@ echo form_open_multipart('registration/update_scheme', $attributes);
 </style>
 <script>
     $(function() {
+        $('.submit-btn').click(function(){
+            $('.mainForm').submit();
+        });
     $('#sqft').change(function(){
           
           var kanal = 0 ;
